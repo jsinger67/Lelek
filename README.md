@@ -19,11 +19,11 @@ Lelek currently generates simple lexers based on .NET Regex. These lexers automa
 
 This project contains some introductory grammar examples from entry level up to a complete Oberon-2 LLK grammar.
 There are also examples that describe the principles of language processing possible with the Lelek tool using semantic actions.  
-But there also exists another opportunity to process the parse result.
-The concrete syntax tree the parser spits out can be processed by user created tools too, of course. So no one is tied to the Lelek's approach to Semantic Actions.
+But of course there exists another opportunity to process the parse result.
+The concrete syntax tree the parser spits out can be processed by user created tools too. So no one is tied to the Lelek's approach to Semantic Actions.
 
 Lelek is a proof of concept.
-I decided to us .NET Core for this project to make it available to a greater group of developers.
+I decided to use .NET Core for this project to make it available to a greater group of developers.
 
 
 Further readings

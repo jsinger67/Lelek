@@ -31,7 +31,7 @@ Identifier      = "[a-zA-Z_]\w*";
 
 This is a very concise grammar that most programmers should be familiar with. There are several specialties described here. First please notice the built-in support for language comments.
 
-Using the `%comment` construct you can easily define your languages comments. For example you can define comments like it's done in the calculator example [Calc.llk](..\grammars\Calc.llk):
+Using the `%comment` construct you can easily define your languages comments. For example you can define comments like it's done in the calculator example [Calc.llk](../grammars/Calc.llk):
 
 ```ebnf
 %comment "//"

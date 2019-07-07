@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Templates\LexerSrc.liquid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Templates\ParserSrc.liquid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Compile Include="Utils.fs" />
+    <Compile Include="LinLlkGrammar.fs" />
+    <Compile Include="First1.fs" />
+    <Compile Include="LeftFactoring.fs" />
+    <Compile Include="Linearize.fs" />
+    <Compile Include="Token.fs" />
+    <Compile Include="LexerTerminals.fs" />
+    <Compile Include="LAAutomaton.fs" />
+    <Compile Include="LANfa.fs" />
+    <Compile Include="LADfa.fs" />
+    <Compile Include="CompiledLADfa.fs" />
+    <Compile Include="GraphvisConversions.fs" />
+    <Compile Include="ParserGenLogger.fs" />
+    <Compile Include="LexerSrcGen.fs" />
+    <Compile Include="ParsingPrediction.fs" />
+    <Compile Include="TokenStream.fs" />
+    <Compile Include="ParserFeedback.fs" />
+    <Compile Include="ParseTree.fs" />
+    <Compile Include="ParserTypes.fs" />
+    <Compile Include="ParserData.fs" />
+    <Compile Include="FSharpSrcGen.fs" />
+    <Compile Include="ParserSrcGenDiagnosis.fs" />
+    <Compile Include="ParserSrcGen.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LlkGrammar\LlkGrammar.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotLiquid" Version="2.0.314" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Calc": {
+      "commandName": "Project",
+      "commandLineArgs": "$(ProjectDir)CalcTest.txt"
+    }
+  }
+}

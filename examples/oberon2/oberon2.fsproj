@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Oberon2Source\Array.Mod" />
+    <None Include="Oberon2Source\Arrays.Mod" />
+    <None Include="Oberon2Source\Case.Mod" />
+    <None Include="Oberon2Source\Constants.Mod" />
+    <None Include="Oberon2Source\Days.Mod" />
+    <None Include="Oberon2Source\Fib.Mod" />
+    <None Include="Oberon2Source\For.Mod" />
+    <None Include="Oberon2Source\Gcd.Mod" />
+    <None Include="Oberon2Source\Hello.Mod" />
+    <None Include="Oberon2Source\IfElse.Mod" />
+    <None Include="Oberon2Source\partest.Mod" />
+    <None Include="Oberon2Source\Procedure.Mod" />
+    <None Include="Oberon2Source\Records.Mod" />
+    <None Include="Oberon2Source\Square.Mod" />
+    <None Include="Oberon2Source\test.Mod" />
+    <None Include="Oberon2Source\Values.Mod" />
+    <None Include="Oberon2Source\Variables.Mod" />
+    <None Include="Oberon2Source\VarParam.Mod" />
+    <None Include="Oberon2Source\While.Mod" />
+    <Compile Include="Oberon2Lexer.fs" />
+    <Compile Include="AST.fs" />
+    <Compile Include="Oberon2Parser.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup />
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\LelekParser\LelekParser.fsproj" />
+    <ProjectReference Include="..\..\src\ParseTreeVisualization\ParseTreeVisualization.fsproj" />
+  </ItemGroup>
+
+</Project>

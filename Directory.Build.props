@@ -1,0 +1,10 @@
+<Project>
+
+  <PropertyGroup>
+    <!-- This totally confuses ionide
+    <BaseOutputPath>$(MSBuildProjectDirectory)\..\..\build\$(MSBuildProjectName)\</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(MSBuildProjectDirectory)\..\..\build\$(MSBuildProjectName)\obj\</BaseIntermediateOutputPath>
+    -->
+  </PropertyGroup>
+
+</Project>

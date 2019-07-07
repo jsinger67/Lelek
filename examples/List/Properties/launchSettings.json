@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "List": {
+      "commandName": "Project",
+      "commandLineArgs": "$(ProjectDir)ListTest.txt"
+    }
+  }
+}

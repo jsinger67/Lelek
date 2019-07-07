@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "oberon2": {
+      "commandName": "Project",
+      "commandLineArgs": "$(SolutionDir)examples\\Oberon2\\Oberon2Source\\partest.Mod"
+    }
+  }
+}

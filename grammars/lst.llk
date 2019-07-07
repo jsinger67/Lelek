@@ -1,0 +1,8 @@
+(* A simple comma separated list *)
+start               = (* epsilon *)
+                    | number { "," number }
+;
+
+number              = "\d+"             @AST.number
+;
+

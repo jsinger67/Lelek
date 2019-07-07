@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <Content Include="CalcTest.txt" />
+      <Compile Include="CalcLexer.fs" />
+      <Compile Include="AST.fs" />
+      <Compile Include="CalcParser.fs" />
+      <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\LelekParser\LelekParser.fsproj" />
+    <ProjectReference Include="..\..\src\LlkGrammar\LlkGrammar.fsproj" />
+    <ProjectReference Include="..\..\src\ParseTreeVisualization\ParseTreeVisualization.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="4.6.2" />
+  </ItemGroup>
+
+</Project>

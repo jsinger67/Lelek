@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Console.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LlkParserBootstrap\LlkParserBootstrap.fsproj" />
+    <ProjectReference Include="..\LelekParser\LelekParser.fsproj" />
+    <ProjectReference Include="..\LlkGrammar\LlkGrammar.fsproj" />
+    <ProjectReference Include="..\ParseTreeVisualization\ParseTreeVisualization.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="4.6.2" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Message Text="Generating Lelek Lexer and Parser..." />
+    <Exec Command="dotnet exec $(TargetPath) $(ProjectDir)" />
+  </Target>
+
+</Project>

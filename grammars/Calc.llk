@@ -1,0 +1,153 @@
+﻿%comment "//"
+%comment "\(\*" "\*\)"
+
+// -------------------------------------------------------------------------------------------------
+// START SYMBOL
+calc                = { instruction ";" }
+;
+
+
+// -------------------------------------------------------------------------------------------------
+// INSTRUCTION
+instruction         = logical_or
+                    | assignment
+;
+
+// !!! Moved up to ensure token precedence of equality_op over assign_op in lexer !!!
+equality_op         = "==|!="
+;
+
+// -------------------------------------------------------------------------------------------------
+// ASSIGNMENT
+assign_op           = "(\+|-|\*|/|%|<<|>>|&|^|\|)?="
+;
+assign_item         = id assign_op                                  @AST.assignItem
+;
+assignment          = assign_item { assign_item } logical_or        @AST.assign
+;
+
+
+// -------------------------------------------------------------------------------------------------
+// LOGICAL OR
+logical_or          = logical_and { logical_or_item }
+;
+logical_or_op       = "\|\|"
+;
+logical_or_item     = logical_or_op logical_and                     @AST.logicalOrItem
+;
+
+
+// -------------------------------------------------------------------------------------------------
+// LOGICAL AND
+logical_and         = bitwise_or { logical_and_item }
+;
+logical_and_op      = "&&"
+;
+logical_and_item    = logical_and_op bitwise_or                     @AST.logicalAndItem
+;
+
+
+// -------------------------------------------------------------------------------------------------
+// BITWISE OR
+bitwise_or          = bitwise_and { bitwise_or_item }
+;
+bitwise_or_op       = "\|"
+;
+bitwise_or_item     = bitwise_or_op bitwise_and                     @AST.bitwiseOrItem
+;
+
+
+// -------------------------------------------------------------------------------------------------
+// BITWISE AND
+bitwise_and         = equality { bitwise_and_item }
+;
+bitwise_and_op      = "\&"
+;
+bitwise_and_item    = bitwise_and_op equality                       @AST.bitwiseAndItem
+;
+
+
+// -------------------------------------------------------------------------------------------------
+// EQULAITY AND INEQUALITY
+equality            = relational { equality_item }
+;
+equality_item       = equality_op relational                        @AST.equalityItem
+;
+
+
+// !!! Moved up to ensure token precedence of bitwise_shift_op over relational_op in lexer !!!
+bitwise_shift_op    = "<<|>>"
+;
+
+// -------------------------------------------------------------------------------------------------
+// RELATIONAL
+relational          = bitwise_shift { relational_item }
+;
+relational_op       = "<=|<|>=|>"
+;
+relational_item     = relational_op bitwise_shift                   @AST.relationalItem
+;
+
+
+// -------------------------------------------------------------------------------------------------
+// BITWISE SHIFT
+bitwise_shift       = summ { bitwise_shift_item }
+;
+bitwise_shift_item  = bitwise_shift_op summ                         @AST.bitwiseShiftItem
+;
+
+
+// -------------------------------------------------------------------------------------------------
+// ADDITION AND SUBTRACTION
+summ                = mult { summ_item }
+;
+plus                = "\+"
+;
+minus               = "-"
+;
+add_op              = plus
+                    | minus
+;
+summ_item           = add_op mult                                   @AST.summItem
+;
+
+
+// !!! Moved up to ensure token precedence of pow_op over mult_op in lexer !!!
+pow_op              = "\*\*"
+;
+
+// -------------------------------------------------------------------------------------------------
+// MULTIPLICATION, DIVISION AND REMAINDER
+mult                = power { mult_item }
+;
+mult_op             = "\*|/|%"
+;
+mult_item           = mult_op power                                 @AST.multItem
+;
+
+
+// -------------------------------------------------------------------------------------------------
+// POWER
+power               = factor { pow_op factor }                      @AST.power
+;
+
+
+// -------------------------------------------------------------------------------------------------
+// NEGATION
+negate              = minus
+;
+
+
+// -------------------------------------------------------------------------------------------------
+// FACTOR
+factor              = number
+                    | idref
+                    | negate factor                                 @AST.negate
+                    | "\(" summ "\)"
+;
+number              = "\d+"                                         @AST.number
+;
+idref               = id                                            @AST.idRef
+;
+id                  = "[a-zA-Z_]\w*"                                @AST.id
+;

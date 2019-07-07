@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Llk.llk">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include="LlkLexer.fs" />
+    <Compile Include="AST.fs" />
+    <Compile Include="LlkParser.fs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\LelekParser\LelekParser.fsproj" />
+    <ProjectReference Include="..\LlkGrammar\LlkGrammar.fsproj" />
+  </ItemGroup>
+</Project>

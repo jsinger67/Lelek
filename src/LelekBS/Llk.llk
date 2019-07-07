@@ -1,0 +1,91 @@
+// Llk Grammar
+grammar                 = comment_decl rules
+                        @AST.grammar
+;
+
+// We parse comments to obtain them for reproduction of grammar in intermediate or original form
+syntactic_comments      = { comment }
+                        @AST.syntacticComments
+;
+
+ignored_comments        = { comment }
+;
+
+comment                 = line_comment | block_comment
+;
+
+line_comment            = "//.*"
+;
+
+block_comment           = "(?m)\(\*(\*(?!\))|[^*])*\*\)(?-m)"
+;
+
+comment_decl            = syntactic_comments [ line_comment_decl ] [ block_comment_decl ]
+                        @AST.commentDecl
+;
+
+rules                   = syntactic_comments rule syntactic_comments { rule syntactic_comments }
+;
+
+rule                    = non_terminal "=" ignored_comments expression ignored_comments ";"
+                        @AST.rule
+;
+
+non_terminal            = identifier
+                        @AST.nonTerminal
+;
+
+expression              = alternations
+;
+
+alternations            = alt { "\|" alt }
+                        @AST.alternations
+;
+
+alt                     = { factor } [ action ]
+                        @AST.alt
+;
+
+factor                  = group
+                        | repeat
+                        | optional
+                        | non_terminal
+                        | terminal
+;
+
+action                  = "@" user_action
+                        @AST.userAction
+;
+
+group                   = "\(" expression "\)"
+                        @AST.group
+;
+
+repeat                  = "\{" expression "\}"
+                        @AST.repeat
+;
+
+optional                = "\[" expression "\]"
+                        @AST.optional
+;
+
+line_comment_decl       = "%comment" string
+;
+
+block_comment_decl      = "%comment" string string
+;
+
+identifier              = "[a-zA-Z_]\w*"
+;
+
+string                  = "\"([^\\]|(\\.))*?\""
+;
+
+user_action             = identifier { "\." identifier }
+;
+
+terminal                = string
+                        @AST.terminal
+;
+
+// End of Llk Grammar

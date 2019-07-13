@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="BooleanParserTest.txt" />
+    <Compile Include="Lexer.fs" />
+    <Compile Include="AST.fs" />
+    <Compile Include="Parser.fs" />
+    <Content Include="BooleanParser.llk" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\LelekParser\LelekParser.fsproj" />
+    <ProjectReference Include="..\..\src\ParseTreeVisualization\ParseTreeVisualization.fsproj" />
+  </ItemGroup>
+
+</Project>

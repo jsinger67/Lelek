@@ -1,0 +1,54 @@
+(*
+BOOLEAN PARSER EXAMPLE
+Inspired by Tom Humphreys BooleanParser project
+https://github.com/Tom01098/BooleanParser
+*)
+
+%comment "//"
+%comment "\(\*" "\*\)"
+
+
+Expression      = Term BinOpsRepeat
+;
+
+BinOpsRepeat    = { BinaryOperator Term }           @AST.binOpList
+;
+
+Term            = [ UnaryOperator ] Factor          @AST.term
+;
+
+Boolean         = "TRUE"
+                | "FALSE"
+;
+
+UnaryOperator   = "NOT"
+;
+
+BinaryOperator  = AndOp
+                | OrOp
+                | XorOp
+                | NorOp
+                | NandOp
+                | XnorOp
+;
+
+AndOp           = "AND"
+;
+OrOp            = "OR"
+;
+XorOp           = "XOR"
+;
+NorOp           = "NOR"
+;
+NandOp          = "NAND"
+;
+XnorOp          = "XNOR"
+;
+
+ParenthesisedExpression = "\(" Expression "\)"
+;
+
+Factor          = Boolean                           @AST.boolean
+                | ParenthesisedExpression
+;
+

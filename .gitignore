@@ -360,3 +360,4 @@ MigrationBackup/
 .vscode/launch.json
 *.dot
 .ionide/symbolCache.db
+**/launchSettings.json

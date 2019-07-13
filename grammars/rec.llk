@@ -1,3 +1,6 @@
+// This is a grammar with indirect recursion.
+// Lelek should detect this.
+
 start                = a
 ;
 

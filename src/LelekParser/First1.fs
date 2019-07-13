@@ -6,16 +6,16 @@ module First1 =
     open LinLlkGrammar
 
     /// -------------------------------------------------------------------------
-    /// Types and their modules for FIRST(k) related functions
-    type FirstKSet =
-        | FirstKSet of Symbol: LinLlkSymbol * Followers: Set<LinLlkSymbol>
+    /// Types and their modules for FIRST1(x) related functions
+    type First1Set =
+        | First1Set of Symbol: LinLlkSymbol * Followers: Set<LinLlkSymbol>
 
-    module FirstKSet =
+    module First1Set =
         let toTupel fks =
-            let (FirstKSet(Symbol = sym; Followers = flwrs)) = fks
+            let (First1Set(Symbol = sym; Followers = flwrs)) = fks
             sym, flwrs
 
-    type FirstKSets = Map<LinLlkSymbol, Set<LinLlkSymbol>>
+    type First1Sets = Map<LinLlkSymbol, Set<LinLlkSymbol>>
 
     /// -------------------------------------------------------------------------
     /// Calculates the FIRST1(x) set of a symbol.
@@ -75,7 +75,7 @@ module First1 =
         if LinLlkData.detectLeftRecursions g |> List.isEmpty |> not then
             failwith "Can't process left recursive grammar!"
 
-        FirstKSet(Symbol = sym, Followers = calcFirst1SetOfVariable sym)
+        First1Set(Symbol = sym, Followers = calcFirst1SetOfVariable sym)
 
 
     /// -------------------------------------------------------------------------
@@ -135,21 +135,21 @@ module First1 =
 
         let (LinLlkRule(Var = vn; Prod = pr)) = rule
         let followers1 = calcFirstSetOfSymbols pr pr Set.empty
-        FirstKSet(Symbol = LinLlkVariable vn, Followers = followers1)
+        First1Set(Symbol = LinLlkVariable vn, Followers = followers1)
 
 
     /// -------------------------------------------------------------------------
     /// Calculates the FIRST1(x) set of all symbols of a given LinLlk data structure.
-    let calcFirst1Sets (g: LinLlkData): FirstKSets =
+    let calcFirst1Sets (g: LinLlkData): First1Sets =
         let nullables = LinLlkData.calcNullables g
         let calcFS = calcFirst1Set g nullables
         g
         |> LinLlkData.varNames
-        |> List.map (LinLlkVariable >> calcFS >> FirstKSet.toTupel)
+        |> List.map (LinLlkVariable >> calcFS >> First1Set.toTupel)
         |> Map.ofList
 
     /// -------------------------------------------------------------------------
-    let calculateFollow1Set (f1s: FirstKSets) (g: LinLlkData) (rule: LinLlkRule): Set<LinLlkSymbol> =
+    let calculateFollow1Set (f1s: First1Sets) (g: LinLlkData) (rule: LinLlkRule): Set<LinLlkSymbol> =
         let (LinLlkRule(Var = vName)) = rule
 
         let rec collectF1 (traversedRules: string list) ruleName =
@@ -194,11 +194,11 @@ module First1 =
     /// Calculates the 1-concatenation of FIRST1(x) and FOLLOW1(x) for a rule x.
     /// This yields the effective set of terminals that can occur at the beginning of
     /// the given rule x.
-    let calculateFirstFollow1 (f1s: FirstKSets) (g: LinLlkData) (nullables: string list) (rule: LinLlkRule) =
+    let calculateFirstFollow1 (f1s: First1Sets) (g: LinLlkData) (nullables: string list) (rule: LinLlkRule) =
 
         let fi1 = calcFirst1SetOfProduction g nullables rule
 
-        let (FirstKSet(Followers = flwrs)) = fi1
+        let (First1Set(Followers = flwrs)) = fi1
         if flwrs |> Set.contains LinLlkEpsilon then
             let fo1 = calculateFollow1Set f1s g rule
             flwrs + fo1 - (Set.singleton LinLlkEpsilon)

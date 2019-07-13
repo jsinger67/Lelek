@@ -1,13 +1,12 @@
-﻿// Learn more about F# at http://fsharp.org
-
-open System
-open System.IO
+﻿open System.IO
 open LelekParser
 open ParseTree
 open BP
 
-// $SolutionDir="C:\Users\joerg\Source\GitHub\Lelek\"
-// dotnet run -- --file ${SolutionDir}examples\BooleanParser\BooleanParser.llk --generate-lexersrc ${SolutionDir}examples\BooleanParser\Lexer.fs --generate-parsersrc ${SolutionDir}examples\BooleanParser\Parser.fs --save-linear-grammar --asttype AST.AST --srcnamespacename BP --lexermodulename BPLexer --parsermodulename BPParser
+// To generate in Powershell:
+// $SolutionDir=Get-Location
+// cd .\src\Lelek
+// dotnet run -- --file ${SolutionDir}\examples\BooleanParser\BooleanParser.llk --generate-lexersrc ${SolutionDir}\examples\BooleanParser\Lexer.fs --generate-parsersrc ${SolutionDir}\examples\BooleanParser\Parser.fs --save-linear-grammar --asttype AST.AST --srcnamespacename BP --lexermodulename BPLexer --parsermodulename BPParser
 
 [<EntryPoint>]
 let main argv =

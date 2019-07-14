@@ -3,6 +3,11 @@ open SrcNamespace
 open LelekParser
 open ParseTree
 
+// To generate in Powershell:
+// $SolutionDir=Get-Location
+// cd .\src\Lelek
+// dotnet run -- --file ${SolutionDir}\grammars\Calc.llk --generate-lexersrc ${SolutionDir}\examples\Calc\CalcLexer.fs --generate-parsersrc ${SolutionDir}\examples\Calc\CalcParser.fs --save-linear-grammar --asttype AST.AST
+
 [<EntryPoint>]
 let main argv =
     if argv.Length = 0 then

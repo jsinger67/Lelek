@@ -52,7 +52,7 @@ module LexerTerminals =
     [<Literal>]
     let private WHITESPACE_TOKEN = @"\s"
     [<Literal>]
-    let private RESTOFLINE_TOKEN = @".*?(\r\n|\r|\n)"
+    let private RESTOFLINE_TOKEN = @".*?(\r\n|\r|\n|$)"
     [<Literal>]
     let private BLOCKCOMMENTCONTENT_TOKEN = @"(.|\r\n|\r|\n)*?"
 

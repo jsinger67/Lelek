@@ -9,7 +9,7 @@ module BPLexer =
         [
             "\r\n|\r|\n"
             "\s"
-            "//.*?(\r\n|\r|\n)"
+            "//.*?(\r\n|\r|\n|$)"
             "\(\*(.|\r\n|\r|\n)*?\*\)"
             "TRUE"
             "FALSE"
@@ -28,7 +28,7 @@ module BPLexer =
     type TokenType = 
         | TkNewLine        =   0 // "\r\n|\r|\n"
         | TkWhitespace     =   1 // "\s"
-        | TkLineComment    =   2 // "//.*?(\r\n|\r|\n)"
+        | TkLineComment    =   2 // "//.*?(\r\n|\r|\n|$)"
         | TkBlockComment   =   3 // "\(\*(.|\r\n|\r|\n)*?\*\)"
         | TkBoolean        =   4 // "TRUE"
         | TkBoolean1       =   5 // "FALSE"
@@ -53,7 +53,7 @@ module BPLexer =
         tt |> enum<TokenType> |> sprintf "%O"
 
     let createLexer (k: int): (string -> Token seq) =
-        let rxStr = @"(?<G0>\r\n|\r|\n)|(?<G1>\s)|(?<G2>//.*?(\r\n|\r|\n))|(?<G3>\(\*(.|\r\n|\r|\n)*?\*\))|(?<G4>TRUE)|(?<G5>FALSE)|(?<G6>NOT)|(?<G7>AND)|(?<G8>OR)|(?<G9>XOR)|(?<G10>NOR)|(?<G11>NAND)|(?<G12>XNOR)|(?<G13>\()|(?<G14>\))|(?<G15>.)"
+        let rxStr = @"(?<G0>\r\n|\r|\n)|(?<G1>\s)|(?<G2>//.*?(\r\n|\r|\n|$))|(?<G3>\(\*(.|\r\n|\r|\n)*?\*\))|(?<G4>TRUE)|(?<G5>FALSE)|(?<G6>NOT)|(?<G7>AND)|(?<G8>OR)|(?<G9>XOR)|(?<G10>NOR)|(?<G11>NAND)|(?<G12>XNOR)|(?<G13>\()|(?<G14>\))|(?<G15>.)"
 
         let hasLineComment = true
 

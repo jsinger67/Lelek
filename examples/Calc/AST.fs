@@ -40,8 +40,6 @@ module AST =
         | Res of Num
         | AssignItem of Id * string
         | Assign of Id * Num
-        | Sum of (BinIntOp * Num)
-        | Mul of (BinIntOp * Num)
         | Err of string
 
     let mutable env: Symbols = Map.empty
@@ -175,8 +173,8 @@ module AST =
         | Res(Num(_) as a) :: (Res(Num(_) as b) :: t) ->
             Res(Num.op_BooleanAnd (a, b)) :: t
         | _ -> 
-            printError feedback "logicalOrItem: unexpected arguments" args.[0]
-            Err("logicalOrItem: unexpected arguments") :: stack
+            printError feedback "logicalAndItem: unexpected arguments" args.[0]
+            Err("logicalAndItem: unexpected arguments") :: stack
 
     let bitwiseOrItem (feedback: ParserFeedback) (stack: AST list) (args: ParseTree list): AST list =
         match stack with

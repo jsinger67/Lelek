@@ -46,7 +46,7 @@ module BPParser =
                     Name = "Expression",
                     Production = [|-1; -2|],
                     PTOp = (fun args -> ParseTree.makePT "Expression" args),
-                    Action = AST.expression,
+                    Action = (fun _ state _ -> state),
                     LookaheadDFA = 
                         [|
                             {

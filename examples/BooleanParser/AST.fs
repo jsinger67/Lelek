@@ -121,5 +121,8 @@ module AST =
             | _ ->
                 stack
                     
-        args.[0] |> ParseTree.childrenOf
-        |> applyBinOp stack
+        match args with
+        | h::_ ->
+            h |> ParseTree.childrenOf
+            |> applyBinOp stack
+        | _ -> stack

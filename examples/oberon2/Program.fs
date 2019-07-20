@@ -4,7 +4,9 @@ open LelekParser
 open ParseTree
 
 // Lelek arguments:
-// --file $(SolutionDir)\grammars\oberon-2.llk --generate-lexersrc $(SolutionDir)examples\oberon2\Oberon2Lexer.fs --generate-parsersrc $(SolutionDir)examples\oberon2\Oberon2Parser.fs --save-linear-grammar --asttype AST.AST --srcnamespacename Oberon2 --lexermodulename Oberon2Lexer --parsermodulename Oberon2Parser
+// $SolutionDir=Get-Location
+// cd .\src\Lelek
+// dotnet run -- --file ${SolutionDir}\grammars\oberon-2.llk --generate-lexersrc ${SolutionDir}\examples\oberon2\Oberon2Lexer.fs --generate-parsersrc ${SolutionDir}\examples\oberon2\Oberon2Parser.fs --save-linear-grammar --asttype AST.AST --srcnamespacename Oberon2 --lexermodulename Oberon2Lexer --parsermodulename Oberon2Parser
 
 [<EntryPoint>]
 let main argv =

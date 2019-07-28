@@ -1,3 +1,8 @@
+# --------------------------------------------------------------------------------------------------
+# You don't need to call this script regularily because the generated sources are under source control.
+# But if you change examples and want to test the results this script helps you.
+# --------------------------------------------------------------------------------------------------
+
 $ErrorCont = 0
 $SolutionDir = Split-Path $MyInvocation.MyCommand.Path -Parent
 

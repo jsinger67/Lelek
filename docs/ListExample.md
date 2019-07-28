@@ -22,7 +22,7 @@ Now you should read the [SemanticActions.md](SemanticActions.md) if you haven't 
 
 Here we will have a closer look at the implementation of the semantic action `number`.
 
-But first we recap where our `number` action is located in the grammar description [List.llk](../grammars/lst.llk).  
+But first we recap where our `number` action is located in the grammar description [lst.llk](../grammars/lst.llk).  
 Here is the complete content of this grammar description:
 
 ```ebnf

@@ -9,7 +9,7 @@ $SolutionDir = Split-Path $MyInvocation.MyCommand.Path -Parent
 # --------------------------------------------------------------------------------------------------
 Set-Location ${SolutionDir}\examples\List
 Write-Host "Running List example..." -ForegroundColor Cyan
-dotnet run .\ListTest.txt
+dotnet run --no-build .\ListTest.txt
 if ($LASTEXITCODE -ne 0) {
     ++$ErrorCont    
 }
@@ -18,7 +18,7 @@ if ($LASTEXITCODE -ne 0) {
 # --------------------------------------------------------------------------------------------------
 Set-Location ${SolutionDir}\examples\Calc
 Write-Host "Running Calc example..." -ForegroundColor Cyan
-dotnet run .\CalcTest.txt
+dotnet run --no-build .\CalcTest.txt
 if ($LASTEXITCODE -ne 0) {
     ++$ErrorCont    
 }
@@ -30,7 +30,7 @@ Write-Host "Running Oberon-2 example..." -ForegroundColor Cyan
 Get-ChildItem .\Oberon2Source\*.Mod |
 ForEach-Object {
     Write-Host "    Parsing Oberon-2 source $($_.Name)..." -ForegroundColor Gray
-    dotnet run $_.FullName
+    dotnet run --no-build $_.FullName
 }
 if ($LASTEXITCODE -ne 0) {
     ++$ErrorCont    
@@ -40,7 +40,7 @@ if ($LASTEXITCODE -ne 0) {
 # --------------------------------------------------------------------------------------------------
 Set-Location ${SolutionDir}\examples\BooleanParser
 Write-Host "Running BooleanParser example..." -ForegroundColor Cyan
-dotnet run .\BooleanParserTest.txt
+dotnet run --no-build .\BooleanParserTest.txt
 if ($LASTEXITCODE -ne 0) {
     ++$ErrorCont    
 }

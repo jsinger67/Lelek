@@ -31,7 +31,7 @@ let fileToBNFGrammar fn =
         Assert.True(false)
         LinLlkData(CommentDecl.empty, [], [])
 
-// This is used to ease the use of output from PasingEmu tool :)
+// This is used to ease the use of output from ParsingEmu tool :)
 let makeTerminalListFromString str =
     let terminalOrEps = function
         | 'e'   -> LinLlkEpsilon
@@ -55,7 +55,7 @@ let ``LinLlkSymbol.toString Test 2`` () =
 [<Fact>]
 let ``nullables Test 1`` () =
     let bnfGrammar = stringToBNFGrammar @"S = A; A = ""a""; A = B; B = ""b"";"
-    test <@ calcNullables bnfGrammar = [ ] @>
+    test <@ List.isEmpty (calcNullables bnfGrammar) @>
 
 [<Fact>]
 let ``nullables Test 2`` () =
@@ -70,7 +70,7 @@ let ``nullables Test 3`` () =
 [<Fact>]
 let ``detectLeftRecursions Test 1`` () =
     let bnfGrammar = stringToBNFGrammar @"S = ""s""; A = ""a""; B = ""b"";"
-    test <@ detectLeftRecursions bnfGrammar = [ ] @>
+    test <@ List.isEmpty (detectLeftRecursions bnfGrammar) @>
 
 [<Fact>]
 let ``detectLeftRecursions Test 2`` () =
@@ -80,12 +80,12 @@ let ``detectLeftRecursions Test 2`` () =
 [<Fact>]
 let ``detectLeftRecursions Test 3`` () =
     let bnfGrammar = stringToBNFGrammar @"S = ""s""; A = ""a"";"
-    test <@ detectLeftRecursions bnfGrammar = [ ] @>
+    test <@ List.isEmpty (detectLeftRecursions bnfGrammar) @>
 
 [<Fact>]
 let ``detectLeftRecursions Test 4`` () =
     let bnfGrammar = stringToBNFGrammar @"S = A; A = ""a""; A = B; B = ;"
-    test <@ detectLeftRecursions bnfGrammar = [ ] @>
+    test <@ List.isEmpty (detectLeftRecursions bnfGrammar) @>
 
 [<Fact>]
 let ``detectLeftRecursions Test 5`` () =
@@ -100,12 +100,12 @@ let ``detectLeftRecursions Test 6`` () =
 [<Fact>]
 let ``detectLeftRecursions Test 7`` () =
     let bnfGrammar = stringToBNFGrammar @"A = B C | ""x""; B = ""y"" | ""z""; C = A ""x"" | ""z"";"
-    test <@ detectLeftRecursions bnfGrammar = [ ]  @>
+    test <@ List.isEmpty (detectLeftRecursions bnfGrammar)  @>
 
 [<Fact>]
 let ``detectLeftRecursions Test 8`` () =
     let bnfGrammar = stringToBNFGrammar @"s = a; d = s ""DS1""; d = s ""DS2""; a = ""A"";"
-    test <@ detectLeftRecursions bnfGrammar = [ ]  @>
+    test <@ List.isEmpty (detectLeftRecursions bnfGrammar)  @>
 
 [<Fact>]
 let ``detectLeftRecursions Test 9`` () =

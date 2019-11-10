@@ -56,12 +56,13 @@ module LexerSrcGen =
             errTxt |> Error
 
 
+    let private rxEscQuote = Regex(@"(?<!\\)""", RegexOptions.Compiled)
+
     let generateLexerSrc (logger: Logger) (g: LinLlkData) (fileName: string) (nameSpaceName: string) (moduleName: string): Result<unit, string> =
 
         let (LinLlkData(CommentDcl = cm)) = g
 
         let escape s =
-            let rxEscQuote = Regex(@"(?<!\\)""", RegexOptions.Compiled)
             rxEscQuote.Replace(s, @"\""")
 
         let terminalList =

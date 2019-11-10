@@ -91,8 +91,9 @@ module BPLexer =
                                             Column = mat.Index - nlPos - 1,
                                             Length = mat.Length))
 
+        let rxNl = Regex(@"\r\n|\r|\n", RegexOptions.Compiled, System.TimeSpan(0, 0, 5))
+
         let lineCountAndIndexOfLastNewLine (mat: Match) =
-            let rxNl = Regex(@"\r\n|\r|\n", RegexOptions.Compiled, System.TimeSpan(0, 0, 5))
             let matches = rxNl.Matches(mat.Value)
             if matches.Count = 0 then
                 0, mat.Index

@@ -10,8 +10,9 @@ module Utils =
         else
             doWhileChanging f res
 
+    let private rxNumSuffix = Regex(@"\d+$", RegexOptions.Compiled)
+
     let generateName (exclusions: string seq) (prefix: string) : string =
-        let rxNumSuffix = Regex(@"\d+$", RegexOptions.Compiled)
         let startNum, pref =
             let mat = rxNumSuffix.Match(prefix)
             if mat.Success then
@@ -29,13 +30,15 @@ module Utils =
         else
             prefix
 
+    let private  rxEscQuote = Regex(@"(?<!\\)""", RegexOptions.Compiled)
+
     let escape s =
-        let rxEscQuote = Regex(@"(?<!\\)""", RegexOptions.Compiled)
         rxEscQuote.Replace(s, @"\""")
      
+    let private rxEscQuoteVerbatim = Regex(@"(?<!(""))""", RegexOptions.Compiled)
+
     let escapeVerbatim s =
-        let rxEscQuote = Regex(@"(?<!(""))""", RegexOptions.Compiled)
-        rxEscQuote.Replace(s, @"""""")
+        rxEscQuoteVerbatim.Replace(s, @"""""")
 
     let internalError dir file line msg =
         failwithf "Internal error: \"%s\" in %s\\%s(%s)" msg dir file line

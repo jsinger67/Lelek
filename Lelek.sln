@@ -37,7 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "grammars", "grammars", "{40
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "List", "examples\List\List.fsproj", "{552C4B97-71F4-4FC1-83CF-50ED96EA271E}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Oberon2", "examples\Oberon2\Oberon2.fsproj", "{AB5D967B-B40C-4CE6-B77C-E1108940FFEA}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Oberon2", "examples\oberon2\oberon2.fsproj", "{AB5D967B-B40C-4CE6-B77C-E1108940FFEA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{233642B2-F2F8-4EF0-97DD-D3168B21E9B4}"
 EndProject

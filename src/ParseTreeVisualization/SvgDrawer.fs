@@ -12,20 +12,20 @@ module SvgDrawer =
     [<Literal>]
     let private YFACTOR = 3.5f
     [<Literal>]
-    let private fontXSize = 10.0f
+    let private FontXSize = 10.0f
     [<Literal>]
-    let private fontYSize = 10.0f
+    let private FontYSize = 10.0f
 
     let drawAST (embedding: Embedding) (ast: ParseTree) (fileName: string): unit =
         
         let scaleY (y: int) =
-            (y |> float32) * fontYSize * YFACTOR + YMARGIN
+            (y |> float32) * FontYSize * YFACTOR + YMARGIN
 
         let scaleX (x: int) =
-            (x |> float32) * fontXSize + XMARGIN
+            (x |> float32) * FontXSize + XMARGIN
 
         let measureString (str: string) =
-            (str.Length |> float32) * fontXSize
+            (str.Length |> float32) * FontXSize
 
 
         let writer = XmlWriter.Create(fileName)
@@ -55,9 +55,9 @@ module SvgDrawer =
                 let childData = embedding.Item(child)
                 writer.WriteStartElement("line")
                 writer.WriteAttributeString("x1", (sprintf "%f" (scaleX(data.XCenter))))
-                writer.WriteAttributeString("y1", (sprintf "%f" (y + fontYSize)))
+                writer.WriteAttributeString("y1", (sprintf "%f" (y + FontYSize)))
                 writer.WriteAttributeString("x2", (sprintf "%f" (scaleX(childData.XCenter))))
-                writer.WriteAttributeString("y2", (sprintf "%f" (scaleY(childData.YOrder) - fontYSize)))
+                writer.WriteAttributeString("y2", (sprintf "%f" (scaleY(childData.YOrder) - FontYSize)))
                 writer.WriteAttributeString("stroke", "black")
                 writer.WriteEndElement()
                 _drawAST child;

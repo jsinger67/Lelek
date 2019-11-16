@@ -36,7 +36,7 @@ module PngDrawer =
             let x = scaleX(data.XCenter) - sz.Width / 2.0f
             let y = scaleY(data.YOrder)
             let brush = normalBrush
-            g.DrawString(data.Name, font, brush, new PointF(x, y))
+            g.DrawString(data.Name, font, brush, PointF(x, y))
             children
             |> List.iter (fun child ->
                 let childData = embedding.Item(child)

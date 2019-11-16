@@ -31,17 +31,17 @@ let reportError e w m =
     sprintf "%d Error(s), %d Warning(s)" e w |> printRed
 
 let parseInputFile fn trace =
-    let start = System.DateTime.Now
+    let start = DateTime.Now
     let ok, pt, us =
         try
             LlkParser.parse fn trace
         with
             | ex -> printfn "\n\nParsing exception:\n>>>\n%s\n\n" (ex.Message)
                     false, ParseTree.empty, []
-    let duration = System.DateTime.Now - start
+    let duration = DateTime.Now - start
 
     try
-        let visualizseSvg = ParseTreeVisualization.visualize LelekParser.SvgDrawer.drawAST
+        let visualizseSvg = ParseTreeVisualization.visualize SvgDrawer.drawAST
         visualizseSvg (Path.ChangeExtension(fn, "svg")) pt
     with
         | ex -> printfn "\n\nException in ParseTreeVisualization: '%s'\n\n" (ex.Message)
@@ -98,14 +98,14 @@ let canDecide bnf (conflicts: LL1Conflicts) maxK =
         if k < maxK then
             conflicts
             |> List.iter (fun cnflct ->
-                System.String('-', 80) |> printCyan
+                String('-', 80) |> printCyan
                 cnflct.Head
                 |> First1SetOfRule.f1SetOf
                 |> Set.map LinLlkSymbol.toString |> String.concat ", " |> sprintf "%s:" |> printCyan
 
                 let ok, actualK =
                     cnflct
-                    |> ParsingPrediction.canResolveConflicts bnf k
+                    |> canResolveConflicts bnf k
                 if ok then
                     printDarkGreen (sprintf "decidable with k=%d" actualK)
                 else
@@ -118,14 +118,14 @@ let canDecide bnf (conflicts: LL1Conflicts) maxK =
 
 
 let findLL1Conflicts (logger: Logger) name bnf k =
-    let conflicts = ParsingPrediction.findLL1Conflicts logger bnf
+    let conflicts = findLL1Conflicts logger bnf
     if conflicts.IsEmpty then
         printDarkGreen (sprintf "%s grammar contains no LL(1) conflicts!" name)
     else
         printYellow (sprintf "%s grammar contains %d LL(1) conflicts:" name (conflicts.Length))
         conflicts
         |> List.iter (fun cnflct ->
-            System.String('-', 80) |> printCyan
+            String('-', 80) |> printCyan
             cnflct.Head
             |> First1SetOfRule.f1SetOf
             |> Set.map LinLlkSymbol.toString |> String.concat ", " |> sprintf "%s:" |> printCyan
@@ -143,9 +143,9 @@ let findLL1Conflicts (logger: Logger) name bnf k =
             )
         )
 
-        System.String('=', 80) |> printRed
+        String('=', 80) |> printRed
         canDecide bnf conflicts k
-        System.String('=', 80) |> printRed
+        String('=', 80) |> printRed
 
 
 let checkUnreachables bnf =
@@ -194,7 +194,7 @@ let main argv =
     reportStart inputFile
 
     let logger =
-        ParserGenLogger.provideLogger
+        provideLogger
             inputFile
             (Path.GetDirectoryName(inputFile) + @"\log\" +
             (Path.GetFileNameWithoutExtension(inputFile)) + ".log")

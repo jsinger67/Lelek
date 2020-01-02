@@ -31,11 +31,13 @@
     <Compile Include="Program.fs" />
   </ItemGroup>
 
-  <ItemGroup />
-
   <ItemGroup>
     <ProjectReference Include="..\..\src\LelekParser\LelekParser.fsproj" />
     <ProjectReference Include="..\..\src\ParseTreeVisualization\ParseTreeVisualization.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="4.6.2" />
   </ItemGroup>
 
 </Project>

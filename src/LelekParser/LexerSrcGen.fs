@@ -88,7 +88,7 @@ module LexerSrcGen =
                 block_comment = CommentDecl.hasBlockComment cm
             }
             let folder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-            use sr = new StreamReader(File.OpenRead(folder + @"./Templates/LexerSrc.liquid"))            
+            use sr = new StreamReader(File.OpenRead(folder + @"/Templates/LexerSrc.liquid"))            
             let template = Template.Parse(sr.ReadToEnd())
             let compiledSrc = template.Render(Hash.FromAnonymousObject(data))
             use swLexerSrc = new StreamWriter(File.Open(fileName, FileMode.Create))

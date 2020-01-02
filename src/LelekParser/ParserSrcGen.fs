@@ -216,7 +216,7 @@ module ParserSrcGen =
                 k = k
             }
             let folder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-            use sr = new StreamReader(File.OpenRead(folder + @"./Templates/ParserSrc.liquid"))            
+            use sr = new StreamReader(File.OpenRead(folder + @"/Templates/ParserSrc.liquid"))            
             let template = Template.Parse(sr.ReadToEnd())
             let compiledSrc = template.Render(Hash.FromAnonymousObject(data))
             use swParserSrc = new StreamWriter(File.Open(par.OutFileName, FileMode.Create))

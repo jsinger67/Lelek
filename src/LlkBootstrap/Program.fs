@@ -60,17 +60,20 @@ let generateParserSrc par =
         printYellow "Error creating parser:"
         printRed err
 
+let correctLiteralPath (p: string) =
+    p.Replace(@"\", Path.DirectorySeparatorChar.ToString())
+
 [<EntryPoint>]
 let main argv =
     let solutionDir = argv.[0]
-    let inputFile = (solutionDir + @"..\LelekBS\Llk.llk")
+    let inputFile = (solutionDir + @"..\LelekBS\Llk.llk") |> correctLiteralPath
     reportStart inputFile
 
     let logger =
         ParserGenLogger.provideLogger
             inputFile
-            (Path.GetDirectoryName(inputFile) + @"\log\" +
-            (Path.GetFileNameWithoutExtension(inputFile)) + ".log")
+            ((Path.GetDirectoryName(inputFile) + @"\log\" +
+                (Path.GetFileNameWithoutExtension(inputFile)) + ".log") |> correctLiteralPath)
     
     let g = parseInputFile inputFile
     let gBnf = g |> Linearize.linearizeGrammar
@@ -79,7 +82,7 @@ let main argv =
     let ns = "LelekBS"
     let ml = "LlkLexer"
 
-    generateLexerScr logger gBnf (solutionDir + @"..\LelekBS\LlkLexer.fs") ns ml
+    generateLexerScr logger gBnf ((solutionDir + @"..\LelekBS\LlkLexer.fs") |> correctLiteralPath) ns ml
 
     if gBnf |> checkUnreachables |> not then
         printRed "Can't proceed..."
@@ -90,7 +93,7 @@ let main argv =
             ParserSrcGenParams.Logger = logger
             MaxLookahead = 5
             Grammar = gBnf
-            OutFileName = solutionDir + @"..\LelekBS\LlkParser.fs"
+            OutFileName = ((solutionDir + @"..\LelekBS\LlkParser.fs") |> correctLiteralPath)
             ParserNamespace = ns
             ParserModule = "LlkParser"
             LexerModule = ml

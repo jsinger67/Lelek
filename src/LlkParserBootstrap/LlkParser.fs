@@ -21,7 +21,7 @@ module LlkParser =
     let private ignoredComment : Parser<unit, unit> =
         ((pstring "(*") >>. (skipManyTill anyChar (pstring "*)")))
         <|>
-        ((regex "//.*?(\r\n|\r\n)") |>> ignore)
+        ((regex "//.*?(\r\n|\r|\n)") |>> ignore)
 
     let private ws = skipSepBy spaces ignoredComment
     
@@ -33,7 +33,7 @@ module LlkParser =
             >>= (fun c -> "(*" + System.String(c |> Array.ofList) + "*)" |> preturn)
     
     let private linecomment : Parser<string, unit> =
-        (regex "//.*?(\r\n|\r\n)") <?> "Comment content" //<!> "Comment content"
+        (regex "//.*?(\r\n|\r|\n)") <?> "Comment content" //<!> "Comment content"
             >>= preturn
     
     let private comments : Parser<string list, unit> =

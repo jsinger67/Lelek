@@ -41,6 +41,12 @@ let makeTerminalListFromString str =
     |> Seq.map terminalOrEps
     |> List.ofSeq
 
+let rxManyWhiteSpaces =
+    Regex("\s+")
+
+let makeStringWhiteSpaceInvariant (s: string) =
+    rxManyWhiteSpaces.Replace(s, " ")
+
 [<Fact>]
 let ``LinLlkSymbol.toString Test 1`` () =
     let bnfSymbol = LinLlkTerminal @""""   // Not escaped yet
@@ -226,8 +232,9 @@ let ``Nfa.ofLAData empty alternative`` () =
     let x =
         nfa
         |> Nfa.toDot title (LAItem.toString (sprintf "%d"))
+        |> makeStringWhiteSpaceInvariant
 
-    test <@ x = """digraph G {
+    test <@ x = ("""digraph G {
     rankdir=LR;
     label="empty";
 
@@ -238,7 +245,7 @@ let ``Nfa.ofLAData empty alternative`` () =
     "0" -> "1" [label="ε"];
 
 }
-"""     @>
+""" |> makeStringWhiteSpaceInvariant) @>
 
 [<Fact>]
 let ``Nfa.ofLAData empty alternative 2`` () =
@@ -252,8 +259,9 @@ let ``Nfa.ofLAData empty alternative 2`` () =
     let x =
         nfa
         |> Nfa.toDot title (LAItem.toString (sprintf "%d"))
+        |> makeStringWhiteSpaceInvariant
 
-    test <@ x = """digraph G {
+    test <@ x = ("""digraph G {
     rankdir=LR;
     label="empty";
 
@@ -264,5 +272,5 @@ let ``Nfa.ofLAData empty alternative 2`` () =
     "0" -> "1" [label="ε"];
 
 }
-"""     @>
+""" |> makeStringWhiteSpaceInvariant) @>
 

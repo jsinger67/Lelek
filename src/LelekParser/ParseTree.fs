@@ -128,7 +128,7 @@ module ParseTree =
 
         // If we see a rightmots child that has the same name as this node and this child further
         // has a child with the same name we place the grandchilds into our child list.
-        // Because this method ist called by the parser for the deepest child first we end up with
+        // Because this method is called by the parser for the deepest child first we end up with
         // the desired structure.
         let raiseList (pt: ParseTree): ParseTree =
             let (ParseTree(Item = item; Children = children)) = pt
@@ -168,12 +168,7 @@ module ParseTree =
             |> List.map (
                 fun v ->
                     pts
-                    |> List.tryFindIndex(
-                        fun pt ->
-                            pt
-                            |> ParseTree.digUpVar v
-                            |> Option.isSome
-                    )
+                    |> List.tryFindIndex((ParseTree.digUpVar v) >> Option.isSome)
             )
 
 

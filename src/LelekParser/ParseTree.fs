@@ -110,7 +110,7 @@ module ParseTree =
                 let len = l |> List.length
                 (l.[len - 1]), l |> List.take (len - 1)
 
-        // We have a parsetree like that:
+        // We have a parse tree like that:
         //            a_lst1
         //          /        \
         //    a_lst1_itm1    a_lst1
@@ -126,8 +126,8 @@ module ParseTree =
         //    a_lst1_itm1  a_lst1_itm1  a_lst1_itm1
         //         :            :            :
 
-        // If we see a rightmots child that has the same name as this node and this child further
-        // has a child with the same name we place the grandchilds into our child list.
+        // If we see a rightmost child that has the same name as this node and this child further
+        // has a child with the same name we place the grandchildren into our child list.
         // Because this method is called by the parser for the deepest child first we end up with
         // the desired structure.
         let raiseList (pt: ParseTree): ParseTree =

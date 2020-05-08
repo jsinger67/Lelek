@@ -361,3 +361,6 @@ MigrationBackup/
 *.dot
 .ionide/symbolCache.db
 **/launchSettings.json
+
+.fake
+.ionide

@@ -50,6 +50,7 @@ module First1 =
                     //(memoizedCalcFirstSetOfSymbol sym) |> Set.contains LinLlkEpsilon
 
                 let allNullable =
+                    symbols.IsEmpty ||
                     nullables.Length = 1 && LinLlkSymbol.isEpsilon (symbols.Head) ||
                     symbols |> List.forall isNullable
 
@@ -108,6 +109,7 @@ module First1 =
                     //(memoizedCalcFirstSetOfSymbol sym) |> Set.contains LinLlkEpsilon
 
                 let allNullable =
+                    symbols.IsEmpty ||
                     nullables.Length = 1 && LinLlkSymbol.isEpsilon (symbols.Head) ||
                     symbols |> List.forall isNullable
 

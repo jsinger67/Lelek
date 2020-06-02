@@ -63,7 +63,7 @@ module LeftFactoring =
 
     /// -------------------------------------------------------------------------
     /// Finds the longest left prefixes in rules of a given EBNF grammar.
-    /// Can be use the factor out these left prefixes later.
+    /// Can be used to factor out these left prefixes later.
     let findLongestPrefixes (g: LinLlkData) : (string * LinLlkSymbol list) list =
         let ruleName (LinLlkRule(Var = v)) = v
         let ruleProd (LinLlkRule(Prod = p)) = p

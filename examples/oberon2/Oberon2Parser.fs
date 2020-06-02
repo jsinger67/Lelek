@@ -33,7 +33,7 @@ module Oberon2Parser =
         )
         |> String.concat " ")
 
-    let k = 7
+    let k = 6
 
     let doParse (stream: TokenStream) (feedback: ParserFeedback) traceMode =
         let mutable userStack : AST.AST list = []

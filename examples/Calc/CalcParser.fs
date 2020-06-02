@@ -33,7 +33,7 @@ module ParserModule =
         )
         |> String.concat " ")
 
-    let k = 3
+    let k = 2
 
     let doParse (stream: TokenStream) (feedback: ParserFeedback) traceMode =
         let mutable userStack : AST.AST list = []

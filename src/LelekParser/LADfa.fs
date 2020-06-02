@@ -164,7 +164,7 @@ module LADfa =
                         let (DfaTransition(ToState = toState)) = elem
                         traverse depth' toState)
                 match pathDepths with
-                | [] -> depth'
+                | [] -> depth
                 | _ -> pathDepths |> List.max
 
             0

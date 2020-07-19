@@ -162,10 +162,32 @@ module ParserModule =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 14, Next = 7)
-                                    Tr(Tok = 17, Next = 1)
-                                    Tr(Tok = 19, Next = 6)
-                                    Tr(Tok = 20, Next = 12)
+                                    Tr(Tok = 14, Next = 9)
+                                    Tr(Tok = 17, Next = 3)
+                                    Tr(Tok = 19, Next = 8)
+                                    Tr(Tok = 20, Next = 1)
+                                |]
+                                Accepted = false
+                                Prediction = -1
+                            }
+                            {
+                                Id = 3
+                                Transitions = [|
+                                    Tr(Tok = 14, Next = 4)
+                                    Tr(Tok = 17, Next = 4)
+                                    Tr(Tok = 19, Next = 4)
+                                    Tr(Tok = 20, Next = 4)
+                                |]
+                                Accepted = false
+                                Prediction = -1
+                            }
+                            {
+                                Id = 9
+                                Transitions = [|
+                                    Tr(Tok = 14, Next = 4)
+                                    Tr(Tok = 17, Next = 4)
+                                    Tr(Tok = 19, Next = 4)
+                                    Tr(Tok = 20, Next = 4)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -173,24 +195,12 @@ module ParserModule =
                             {
                                 Id = 1
                                 Transitions = [|
-                                    Tr(Tok = 14, Next = 2)
-                                    Tr(Tok = 17, Next = 2)
-                                    Tr(Tok = 19, Next = 2)
-                                    Tr(Tok = 20, Next = 2)
+                                    Tr(Tok = 6, Next = 2)
+                                    Tr(Tok = 15, Next = 4)
+                                    Tr(Tok = 16, Next = 4)
                                 |]
-                                Accepted = false
-                                Prediction = -1
-                            }
-                            {
-                                Id = 7
-                                Transitions = [|
-                                    Tr(Tok = 14, Next = 2)
-                                    Tr(Tok = 17, Next = 2)
-                                    Tr(Tok = 19, Next = 2)
-                                    Tr(Tok = 20, Next = 2)
-                                |]
-                                Accepted = false
-                                Prediction = -1
+                                Accepted = true
+                                Prediction = 1
                             }
                             {
                                 Id = 2
@@ -199,27 +209,17 @@ module ParserModule =
                                 Prediction = 0
                             }
                             {
-                                Id = 6
-                                Transitions = [|
-                                    Tr(Tok = 15, Next = 2)
-                                    Tr(Tok = 16, Next = 2)
-                                |]
-                                Accepted = true
-                                Prediction = 0
-                            }
-                            {
-                                Id = 12
-                                Transitions = [|
-                                    Tr(Tok = 6, Next = 15)
-                                    Tr(Tok = 15, Next = 2)
-                                    Tr(Tok = 16, Next = 2)
-                                |]
-                                Accepted = true
-                                Prediction = 0
-                            }
-                            {
-                                Id = 15
+                                Id = 4
                                 Transitions = [||]
+                                Accepted = true
+                                Prediction = 1
+                            }
+                            {
+                                Id = 8
+                                Transitions = [|
+                                    Tr(Tok = 15, Next = 4)
+                                    Tr(Tok = 16, Next = 4)
+                                |]
                                 Accepted = true
                                 Prediction = 1
                             }
@@ -234,21 +234,18 @@ module ParserModule =
                 )
 
                 // -----------------------------------------------------------------------------
-                // 6    Rules of "logical_or"
+                // 6    Rules of "assignment"
                 // -----------------------------------------------------------------------------
                 ParserRule(
-                    Name = "logical_or",
-                    Production = [|-15; -16|],
-                    PTOp = (fun args -> ParseTree.clipPT "logical_or" args),
-                    Action = (fun _ state _ -> state),
+                    Name = "assignment",
+                    Production = [|-10; -12; -7|],
+                    PTOp = (fun args -> ParseTree.clipPT "assignment" args),
+                    Action = AST.assign,
                     LookaheadDFA = 
                         [|
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 14, Next = 1)
-                                    Tr(Tok = 17, Next = 1)
-                                    Tr(Tok = 19, Next = 1)
                                     Tr(Tok = 20, Next = 1)
                                 |]
                                 Accepted = false
@@ -264,18 +261,21 @@ module ParserModule =
                 )
 
                 // -----------------------------------------------------------------------------
-                // 7    Rules of "assignment"
+                // 7    Rules of "logical_or"
                 // -----------------------------------------------------------------------------
                 ParserRule(
-                    Name = "assignment",
-                    Production = [|-10; -12; -6|],
-                    PTOp = (fun args -> ParseTree.clipPT "assignment" args),
-                    Action = AST.assign,
+                    Name = "logical_or",
+                    Production = [|-15; -16|],
+                    PTOp = (fun args -> ParseTree.clipPT "logical_or" args),
+                    Action = (fun _ state _ -> state),
                     LookaheadDFA = 
                         [|
                             {
                                 Id = 0
                                 Transitions = [|
+                                    Tr(Tok = 14, Next = 1)
+                                    Tr(Tok = 17, Next = 1)
+                                    Tr(Tok = 19, Next = 1)
                                     Tr(Tok = 20, Next = 1)
                                 |]
                                 Accepted = false

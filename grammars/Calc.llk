@@ -9,8 +9,8 @@ calc                = { instruction ";" }
 
 // -------------------------------------------------------------------------------------------------
 // INSTRUCTION
-instruction         = logical_or
-                    | assignment
+instruction         = assignment
+                    | logical_or
 ;
 
 // !!! Moved up to ensure token precedence of equality_op over assign_op in lexer !!!

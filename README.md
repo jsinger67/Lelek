@@ -4,7 +4,7 @@ Lelek is a parser generator `for F# written in F#` with the following features
 
 * Generated parsers are `table driven`
 * Generated parsers are predictive, i.e. they implement a `non-backtracking` parsing technique
-* Uses a special `LL(k)` technique: LLm(n), i.e.
+* Uses a special `LL(k)` technique: LL<sup>m</sup>(k), i.e.
 * Generated parsers use a `flexible lookahead` for each non-terminal; they use only as much lookahead as needed
 * Rule selection is done by a deterministic finite `lookahead automaton` for each non-terminal
 * Lexers and parsers are generated from `one single grammar description` file

@@ -1,0 +1,14 @@
+{
+    "workbench.colorTheme": "Atom One Light",
+    "workbench.iconTheme": "vscode-icons",
+    "git.autofetch": true,
+    "editor.minimap.enabled": false,
+    "window.zoomLevel": 0,
+    "svg.preview.mode": "svg",
+    "graphvizPreview.dotPath": "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe",
+    "files.associations": {
+        "*.llk": "ebnf"
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "terminal.integrated.shell.windows": "C:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+}

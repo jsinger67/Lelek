@@ -46,6 +46,13 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 
+# --------------------------------------------------------------------------------------------------
+Set-Location ${SolutionDir}\examples\JsonParser
+Write-Host "Running JsonParser example..." -ForegroundColor Cyan
+dotnet run --no-build .\JsonParserTest.json
+if ($LASTEXITCODE -ne 0) {
+    ++$ErrorCont    
+}
 
 # --------------------------------------------------------------------------------------------------
 # Final message

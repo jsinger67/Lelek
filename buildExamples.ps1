@@ -38,6 +38,13 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 # --------------------------------------------------------------------------------------------------
+Write-Host "Building JsonParser example..." -ForegroundColor Cyan
+dotnet run -- --file ${SolutionDir}\examples\JsonParser\json.llk --generate-lexersrc ${SolutionDir}\examples\JsonParser\Lexer.fs --generate-parsersrc ${SolutionDir}\examples\JsonParser\Parser.fs --save-linear-grammar --asttype AST.AST --srcnamespacename JP --lexermodulename JPLexer --parsermodulename JPParser
+if ($LASTEXITCODE -ne 0) {
+    ++$ErrorCont    
+}
+
+# --------------------------------------------------------------------------------------------------
 # Final message
 # --------------------------------------------------------------------------------------------------
 if ($ErrorCont -gt 0) {

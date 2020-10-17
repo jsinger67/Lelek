@@ -244,10 +244,12 @@ module LinLlkGrammar =
                         | LinLlkTerminal _ ->
                             visited1
                         | LinLlkVariable s ->
+                            let visited' = findRecursionAtVariable s visited1
                             if nlls |> List.contains s then
-                                findRecursionAtSymbols t visited1
+                                findRecursionAtSymbols t visited'
                             else
-                                findRecursionAtVariable s visited1
+                                visited'
+                                
 
             and findRecursionAtVariable (var: string) (visited: string list): string list =
                 var

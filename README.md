@@ -1,3 +1,5 @@
+![.NET Core](https://github.com/jsinger67/Lelek/workflows/.NET%20Core/badge.svg)
+
 # About Lelek - v0.2.0
 
 Lelek is a parser generator `for F# written in F#` with the following features

@@ -233,21 +233,24 @@ module LinLlkGrammar =
                 | []    ->
                     visited
                 | h::t  ->
-                    let visited1 = visitSymbol h visited
-                    let recursionFound = visited1 |> containsRecursion
-                    if recursionFound then
-                        visited1
-                    else
-                        match h with
-                        | LinLlkEnd
-                        | LinLlkEpsilon
-                        | LinLlkTerminal _ ->
-                            visited1
-                        | LinLlkVariable s ->
-                            if nlls |> List.contains s then
-                                findRecursionAtSymbols t visited1
+                    match h with
+                    | LinLlkEnd
+                    | LinLlkEpsilon
+                    | LinLlkTerminal _ ->
+                        visited
+                    | LinLlkVariable s ->
+                        let visited = visitSymbol h visited
+                        if visited |> containsRecursion then
+                            visited
+                        else
+                            let visited = findRecursionAtVariable s visited
+                            if visited |> containsRecursion then
+                                visited
                             else
-                                findRecursionAtVariable s visited1
+                                if nlls |> List.contains s then
+                                    findRecursionAtSymbols t visited
+                                else
+                                    visited
 
             and findRecursionAtVariable (var: string) (visited: string list): string list =
                 var

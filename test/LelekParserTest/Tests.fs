@@ -60,67 +60,67 @@ let ``LinLlkSymbol.toString Test 2`` () =
 
 [<Fact>]
 let ``nullables Test 1`` () =
-    let bnfGrammar = stringToBNFGrammar @"S = A; A = ""a""; A = B; B = ""b"";"
+    let bnfGrammar = stringToBNFGrammar @"%grammar S = A; A = ""a""; A = B; B = ""b"";"
     test <@ List.isEmpty (calcNullables bnfGrammar) @>
 
 [<Fact>]
 let ``nullables Test 2`` () =
-    let bnfGrammar = stringToBNFGrammar @"S = A; A = ""a""; A = ""x""; B = ""b""; B = ;"
+    let bnfGrammar = stringToBNFGrammar @"%grammar S = A; A = ""a""; A = ""x""; B = ""b""; B = ;"
     test <@ calcNullables bnfGrammar = [ "b" ] @>
 
 [<Fact>]
 let ``nullables Test 3`` () =
-    let bnfGrammar = stringToBNFGrammar @"S = A; A = ""a""; A = B; B = ""b""; B = ;"
+    let bnfGrammar = stringToBNFGrammar @"%grammar S = A; A = ""a""; A = B; B = ""b""; B = ;"
     test <@ calcNullables bnfGrammar = [ "s"; "a"; "b" ] @>
 
 [<Fact>]
 let ``detectLeftRecursions Test 1`` () =
-    let bnfGrammar = stringToBNFGrammar @"S = ""s""; A = ""a""; B = ""b"";"
+    let bnfGrammar = stringToBNFGrammar @"%grammar S = ""s""; A = ""a""; B = ""b"";"
     test <@ List.isEmpty (detectLeftRecursions bnfGrammar) @>
 
 [<Fact>]
 let ``detectLeftRecursions Test 2`` () =
-    let bnfGrammar = stringToBNFGrammar @"S = S ""s"";"
+    let bnfGrammar = stringToBNFGrammar @"%grammar S = S ""s"";"
     test <@ detectLeftRecursions bnfGrammar = [ ["s"; "s"] ] @>
 
 [<Fact>]
 let ``detectLeftRecursions Test 3`` () =
-    let bnfGrammar = stringToBNFGrammar @"S = ""s""; A = ""a"";"
+    let bnfGrammar = stringToBNFGrammar @"%grammar S = ""s""; A = ""a"";"
     test <@ List.isEmpty (detectLeftRecursions bnfGrammar) @>
 
 [<Fact>]
 let ``detectLeftRecursions Test 4`` () =
-    let bnfGrammar = stringToBNFGrammar @"S = A; A = ""a""; A = B; B = ;"
+    let bnfGrammar = stringToBNFGrammar @"%grammar S = A; A = ""a""; A = B; B = ;"
     test <@ List.isEmpty (detectLeftRecursions bnfGrammar) @>
 
 [<Fact>]
 let ``detectLeftRecursions Test 5`` () =
-    let bnfGrammar = stringToBNFGrammar @"A = B | ""a""; B = C | ""b""; C = A ""a"" | ""c"";"
+    let bnfGrammar = stringToBNFGrammar @"%grammar A = B | ""a""; B = C | ""b""; C = A ""a"" | ""c"";"
     test <@ detectLeftRecursions bnfGrammar = [ ["b"; "c"; "a"; "b"]; ["c"; "a"; "b"; "c"]; ["a"; "b"; "c"; "a"] ]  @>
 
 [<Fact>]
 let ``detectLeftRecursions Test 6`` () =
-    let bnfGrammar = stringToBNFGrammar @"A = B C | ""x""; B = ""y"" | ; C = A ""x"" | ""z"";"
+    let bnfGrammar = stringToBNFGrammar @"%grammar A = B C | ""x""; B = ""y"" | ; C = A ""x"" | ""z"";"
     test <@ detectLeftRecursions bnfGrammar = [ ["b"; "c"; "a"; "b"]; ["a"; "b"; "c"; "a"] ]  @>
 
 [<Fact>]
 let ``detectLeftRecursions Test 7`` () =
-    let bnfGrammar = stringToBNFGrammar @"A = B C | ""x""; B = ""y"" | ""z""; C = A ""x"" | ""z"";"
+    let bnfGrammar = stringToBNFGrammar @"%grammar A = B C | ""x""; B = ""y"" | ""z""; C = A ""x"" | ""z"";"
     test <@ List.isEmpty (detectLeftRecursions bnfGrammar)  @>
 
 [<Fact>]
 let ``detectLeftRecursions Test 8`` () =
-    let bnfGrammar = stringToBNFGrammar @"s = a; d = s ""DS1""; d = s ""DS2""; a = ""A"";"
+    let bnfGrammar = stringToBNFGrammar @"%grammar s = a; d = s ""DS1""; d = s ""DS2""; a = ""A"";"
     test <@ List.isEmpty (detectLeftRecursions bnfGrammar)  @>
 
 [<Fact>]
 let ``detectLeftRecursions Test 9`` () =
-    let bnfGrammar = stringToBNFGrammar @"E = E ""+"" E2; E = E ""−"" E2; E = E2; E2 = E2 ""*"" E3; E2 = E2 ""/"" E3; E2 = E3; E3 = ""num""; E3 = ""("" E "")"";"
+    let bnfGrammar = stringToBNFGrammar @"%grammar E = E ""+"" E2; E = E ""−"" E2; E = E2; E2 = E2 ""*"" E3; E2 = E2 ""/"" E3; E2 = E3; E3 = ""num""; E3 = ""("" E "")"";"
     test <@ detectLeftRecursions bnfGrammar = [["e"; "e"]; ["e2"; "e2"]]   @>
 
 [<Fact>]
 let ``detectLeftRecursions Test 10`` () =
-    let bnfGrammar = stringToBNFGrammar @"or_expr = xor_expr; or_expr = or_expr ""|"" xor_expr;"
+    let bnfGrammar = stringToBNFGrammar @"%grammar or_expr = xor_expr; or_expr = or_expr ""|"" xor_expr;"
     test <@ detectLeftRecursions bnfGrammar = [["or_expr"; "or_expr"]]   @>
 
 
@@ -132,7 +132,7 @@ let i2n g = (LexerTerminals.indexToName g) >> (sprintf @"""%s""")
 
 [<Fact>]
 let ``calcLARx 1`` () =
-    let g = stringToBNFGrammar @"S = A; A = ""a"" | ""b"";"
+    let g = stringToBNFGrammar @"%grammar S = A; A = ""a"" | ""b"";"
     let (LinLlkData(_, rl, _)) = g
     let rule = rl.Head
     let nfa = calcLAData g 1 rule
@@ -141,7 +141,7 @@ let ``calcLARx 1`` () =
 
 [<Fact>]
 let ``calcLARx 2`` () =
-    let g = stringToBNFGrammar @"S = A; A = B | C; B = ""a"" | ""b""; C = ""c"" | ""d"";"
+    let g = stringToBNFGrammar @"%grammar S = A; A = B | C; B = ""a"" | ""b""; C = ""c"" | ""d"";"
     let (LinLlkData(_, rl, _)) = g
     let rule = rl.Head
     let nfa = calcLAData g 1 rule
@@ -150,7 +150,7 @@ let ``calcLARx 2`` () =
 
 [<Fact>]
 let ``calcLARx 3`` () =
-    let g = stringToBNFGrammar @"S = A; A = B | C; B = ""a"" | ""b""; C = ""c"" | ;"
+    let g = stringToBNFGrammar @"%grammar S = A; A = B | C; B = ""a"" | ""b""; C = ""c"" | ;"
     let (LinLlkData(_, rl, _)) = g
     let rule = rl.Head
     let nfa = calcLAData g 1 rule
@@ -159,7 +159,7 @@ let ``calcLARx 3`` () =
 
 [<Fact>]
 let ``calcLARx 4`` () =
-    let g = stringToBNFGrammar @"S = A; A = B | C; B = ""a"" | ""b""; C = ""c"" | ;"
+    let g = stringToBNFGrammar @"%grammar S = A; A = B | C; B = ""a"" | ""b""; C = ""c"" | ;"
     let (LinLlkData(_, rl, _)) = g
     let rule = rl.Head
     let nfa = calcLAData g 2 rule
@@ -168,7 +168,7 @@ let ``calcLARx 4`` () =
 
 [<Fact>]
 let ``calcLARx 5`` () =
-    let g = stringToBNFGrammar @"S = ""a"" T U ""f"" ""g""; T = ""b"" | ""c""; U = ""d"" | ""e"";"
+    let g = stringToBNFGrammar @"%grammar S = ""a"" T U ""f"" ""g""; T = ""b"" | ""c""; U = ""d"" | ""e"";"
     // S->aTUfg
     // T->b
     // T->c
@@ -184,7 +184,7 @@ let ``calcLARx 5`` () =
 
 [<Fact>]
 let ``calcLARx 6`` () =
-    let g = stringToBNFGrammar @"S = A; A = B [C] D; B = ""a"" | ""b""; C = ""c""; D = ""d""; D =;"
+    let g = stringToBNFGrammar @"%grammar S = A; A = B [C] D; B = ""a"" | ""b""; C = ""c""; D = ""d""; D =;"
     let (LinLlkData(_, rl, _)) = g
     let rule = rl.Head
     let nfa = calcLAData g 3 rule
@@ -193,7 +193,7 @@ let ``calcLARx 6`` () =
 
 [<Fact>]
 let ``calcLARx 7`` () =
-    let g = stringToBNFGrammar @"S = A; A = B [C] D; B = ; C = ""c""; D = ;"
+    let g = stringToBNFGrammar @"%grammar S = A; A = B [C] D; B = ; C = ""c""; D = ;"
     let (LinLlkData(_, rl, _)) = g
     let rule = rl.Head
     let nfa = calcLAData g 2 rule
@@ -202,7 +202,7 @@ let ``calcLARx 7`` () =
 
 [<Fact>]
 let ``calcLARx 8`` () =
-    let g = stringToBNFGrammar @"S = A; A = B [C] D; B = ; C = ""c""; D = ;"
+    let g = stringToBNFGrammar @"%grammar S = A; A = B [C] D; B = ; C = ""c""; D = ;"
     let (LinLlkData(_, rl, _)) = g
     let rule = rl.Head
     let nfa = calcLAData g 3 rule

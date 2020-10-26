@@ -7,6 +7,7 @@ https://github.com/Tom01098/BooleanParser
 %comment "//"
 %comment "\(\*" "\*\)"
 
+%grammar
 
 Expression      = Term BinOpsRepeat
 ;

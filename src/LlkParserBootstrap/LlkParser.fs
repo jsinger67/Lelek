@@ -58,7 +58,7 @@ module LlkParser =
     Expression      = Alternations.
     NonTerminal     = Indentifier.
     Rule            = NonTerminal '=' Expression ';'.
-    Rules           = Rule {Rule}.
+    Rules           = '%grammar' Rule {Rule}.
     LineComment     = '%comment' '"'Start'"'
     BlockComment    = '%comment' '"'Start'"' '"'End'"'
     CommentDecl     = [LineComment] [BlockComment]
@@ -193,10 +193,15 @@ module LlkParser =
             >>= (fun ((c, n), e) -> preturn (Rule (c, n, e, Nop)))
 
     // -----------------------------------------------------------------------------
+    // Rules
+    // -----------------------------------------------------------------------------
+    let pRules : Parser<Rule list, unit>  = strws "%grammar" >>. (many1 (attempt pRule))
+
+    // -----------------------------------------------------------------------------
     // Grammar
     // -----------------------------------------------------------------------------
     let pGrammar : Parser<LlkData> =
-        pCommentDecl .>>. (many1 (attempt pRule)) .>>. comments .>> eof
+        pCommentDecl .>>. pRules .>>. comments .>> eof
             >>= (fun ((d, r), c) -> (LlkData(CommentDcl = d, Rules = r, CommentRest = c)) |> preturn)
     
     // -----------------------------------------------------------------------------

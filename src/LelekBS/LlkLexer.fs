@@ -16,6 +16,7 @@ module LlkLexer =
             "\s"
             "//.*"
             "(?m)\(\*(\*(?!\))|[^*])*\*\)(?-m)"
+            "%grammar"
             "="
             ";"
             "\|"
@@ -38,21 +39,22 @@ module LlkLexer =
         | TkWhitespace         =   1 // "\s"
         | TkLineComment        =   2 // "//.*"
         | TkBlockComment       =   3 // "(?m)\(\*(\*(?!\))|[^*])*\*\)(?-m)"
-        | TkEqu                =   4 // "="
-        | TkSemicolon          =   5 // ";"
-        | TkEscOr              =   6 // "\|"
-        | TkAt                 =   7 // "@"
-        | TkEscLParen          =   8 // "\("
-        | TkEscRParen          =   9 // "\)"
-        | TkEscLBrace          =  10 // "\{"
-        | TkEscRBrace          =  11 // "\}"
-        | TkEscLBracket        =  12 // "\["
-        | TkEscRBracket        =  13 // "\]"
-        | TkPercentcomment     =  14 // "%comment"
-        | TkIdentifier         =  15 // "[a-zA-Z_]\w*"
-        | TkString             =  16 // "\"([^\\]|(\\.))*?\""
-        | TkEscDot             =  17 // "\."
-        | TkError              =  18 // "."
+        | TkPercentgrammar     =   4 // "%grammar"
+        | TkEqu                =   5 // "="
+        | TkSemicolon          =   6 // ";"
+        | TkEscOr              =   7 // "\|"
+        | TkAt                 =   8 // "@"
+        | TkEscLParen          =   9 // "\("
+        | TkEscRParen          =  10 // "\)"
+        | TkEscLBrace          =  11 // "\{"
+        | TkEscRBrace          =  12 // "\}"
+        | TkEscLBracket        =  13 // "\["
+        | TkEscRBracket        =  14 // "\]"
+        | TkPercentcomment     =  15 // "%comment"
+        | TkIdentifier         =  16 // "[a-zA-Z_]\w*"
+        | TkString             =  17 // "\"([^\\]|(\\.))*?\""
+        | TkEscDot             =  18 // "\."
+        | TkError              =  19 // "."
 
     let indexToName idx =
             if idx = System.Int32.MaxValue then
@@ -64,7 +66,7 @@ module LlkLexer =
         tt |> enum<TokenType> |> sprintf "%O"
 
     let createLexer (k: int): (string -> Token seq) =
-        let rxStr = @"(?<G0>\r\n|\r|\n)|(?<G1>\s)|(?<G2>//.*)|(?<G3>(?m)\(\*(\*(?!\))|[^*])*\*\)(?-m))|(?<G4>=)|(?<G5>;)|(?<G6>\|)|(?<G7>@)|(?<G8>\()|(?<G9>\))|(?<G10>\{)|(?<G11>\})|(?<G12>\[)|(?<G13>\])|(?<G14>%comment)|(?<G15>[a-zA-Z_]\w*)|(?<G16>\""([^\\]|(\\.))*?\"")|(?<G17>\.)|(?<G18>.)"
+        let rxStr = @"(?<G0>\r\n|\r|\n)|(?<G1>\s)|(?<G2>//.*)|(?<G3>(?m)\(\*(\*(?!\))|[^*])*\*\)(?-m))|(?<G4>%grammar)|(?<G5>=)|(?<G6>;)|(?<G7>\|)|(?<G8>@)|(?<G9>\()|(?<G10>\))|(?<G11>\{)|(?<G12>\})|(?<G13>\[)|(?<G14>\])|(?<G15>%comment)|(?<G16>[a-zA-Z_]\w*)|(?<G17>\""([^\\]|(\\.))*?\"")|(?<G18>\.)|(?<G19>.)"
 
         let hasLineComment = false
 

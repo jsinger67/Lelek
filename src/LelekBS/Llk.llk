@@ -1,4 +1,6 @@
 // Llk Grammar
+%grammar
+
 grammar                 = comment_decl rules
                         @AST.grammar
 ;
@@ -24,7 +26,7 @@ comment_decl            = syntactic_comments [ line_comment_decl ] [ block_comme
                         @AST.commentDecl
 ;
 
-rules                   = syntactic_comments rule syntactic_comments { rule syntactic_comments }
+rules                   = "%grammar" syntactic_comments rule syntactic_comments { rule syntactic_comments }
 ;
 
 rule                    = non_terminal "=" ignored_comments expression ignored_comments ";"

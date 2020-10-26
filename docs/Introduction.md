@@ -1,27 +1,26 @@
-Build the project
-===
+# Build the project
+
 You can use your favorite editor or IDE. When you use Visual Studio >= 2015 you can simply build the solution as you're used to.
 Visual Studio Code supports MSBuild builds from inside the editor via command palette.
 On a shell or terminal you can call
 
+```shell
     dotnet build
+```
 
 from your solutions folder.
 This will automatically call `restore` for you to load all necessary dependencies.
 
-Package available?
-===
-It is planned to provide a `NuGet` package for the Lelek library and the command line tool. 
+## The first test
 
-
-The first test
-===
 When built successfully you can just call the Lelek parser generator to get a feeling about how to use it in your own project.
 
 Command line usage:
 
+```shell
     cd src\Lelek
     dotnet run --file ..\..\Grammars\lst.llk
+```
 
 This will first check if the project is built correctly an then it will call the parser generator with the given grammar description file.
 In this example we don't instruct the Lelek tool to generate any source code but rather we check the given file.
@@ -35,6 +34,7 @@ Now lets have a look at the used grammar `lst.llk`.
 
 ```ebnf
 (* A simple comma separated list *)
+%grammar
 start               = (* epsilon *)
                     | number { "," number }
 ;
@@ -61,14 +61,12 @@ Each rule must be terminated with a semicolon.
 
 The complete description of the LLK syntax can be found here: [LLK Grammar](./LlkGrammar.md)
 
-Why so much output from Lelek tool?
-==
+## Why so much output from Lelek tool
 
 The Lelek executable is made for development an thus it is as verbose as necessary.
 If you don't want so much clutter you can easily modify this tool to fit your own taste or even create a new command line tool that calls the functions provided by the LelekParser library.
 
-What's next?
-==
+## What's next
+
 * [LLK Grammar](./LlkGrammar.md)
 * [The list example](./ListExample.md)
-

@@ -1,6 +1,8 @@
 (* Derived from http://json.org *)
 (* Adapted for Lelek by Joerg Singer *)
 
+%grammar
+
 json
    = value
    ;

@@ -1,4 +1,5 @@
 (* A simple comma separated list *)
+%grammar
 start               = (* epsilon *)
                     | number { "," number }
 ;

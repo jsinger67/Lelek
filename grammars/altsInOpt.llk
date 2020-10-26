@@ -1,3 +1,5 @@
+%grammar
+
 a = [ b | c [d] ];
 b = "b";
 c = "c";

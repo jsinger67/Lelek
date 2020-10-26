@@ -1,5 +1,5 @@
-The syntax of LLK Grammar definition
-==
+# The syntax of LLK Grammar definition
+
 Here I provide the definition of the LLK grammar in EBNF.
 
 ```ebnf
@@ -8,7 +8,7 @@ Grammar         = CommentDecl, Rules;                   (* The start symbol of t
 CommentDecl     = [LineComment], [BlockComment];        (* Comment declarations are optional *)
 LineComment     = '%comment', String;                   (* Defines the start sequence of a line comment *)
 BlockComment    = '%comment', String, String;           (* Defines the start and end sequences of a block comment *)
-Rules           = Rule, {Rule};                         (* There must be at least one rule - the start rule *)
+Rules           = '%grammar', Rule, {Rule};             (* There must be at least one rule - the start rule *)
 Rule            = NonTerminal, '=', Expression, ';';
 Expression      = Alternations;
 Alternations    = Sequence, {'|', Alternations};
@@ -40,13 +40,12 @@ Using the `%comment` construct you can easily define your languages comments. Fo
 
 Also - as an extension to EBNF - you can use C-like line comments starting with two slashes (//) in LLK files.
 
-The start symbol
---
+## The start symbol
+
 It is important to note that _the very first rule is always treated as the start symbol of the grammar_.
 
+## Lexer control
 
-Lexer control
---
 A lexer is automatically created from all used terminal symbols.
 
 Since Lelek creates a lexer on the base of .NET Regex class all terminals are treated as if they were regular expressions.
@@ -59,14 +58,18 @@ The last point needs a more detailed explanation.
 It's best to show an example for such a situation.
 Say you have two terminals "-" and "--", _minus_ and _decrement_. The generated lexer is then based on the following regular expression:
 
+```regex
     "-|--"
+```
 
 The .NET Regex class will now match two times _minus_ when actually a _decrement_ operator should be detected.
 It behaves here differently than a classic lexer like Lex that obeys the _longest match_ strategy.
 
 Fortunately there is a simple way to achieve what we want. We just need a resulting regular expression with a different order:
 
+```regex
     "--|-"
+```
 
 This will perfectly do the job.
 
@@ -84,8 +87,8 @@ Thats all.
 
 With this simple but effective means you have the control over lexer conflicts.
 
-Placing semantic actions
---
+## Placing semantic actions
+
 You can place semantic action at the end of each `Sequence`. This means each alternative (syntactically a sequence) can have at most one action.
 
 Lets look at an example.
@@ -110,4 +113,5 @@ intermediateRule = a @actionBetween_a_and_b
 ```
 
 More on implementing sematic actions see
+
 * [Sematic actions](./SemanticActions.md)

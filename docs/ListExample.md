@@ -1,15 +1,18 @@
-List - A more detailed example
-==
+# List - A more detailed example
+
 If you want you can build the lexer and parser for the *List* example with the following command lines:
 
+```powershell
     cd src\Lelek
     dotnet run --file ..\..\Grammars\lst.llk  --generate-lexersrc ..\..\examples\List\ListLexer.fs --generate-parsersrc ..\..\examples\List\ListParser.fs --save-linear-grammar --asttype AST.AST
+```
 
 Then you can start and test the *List* examples executable by executing the following two commands:
 
+```powershell
     cd ..\..\examples\List
     dotnet run .\ListTest.txt
-
+```
 
 You should get the following output
 > Parsing succeeded  
@@ -26,7 +29,9 @@ But first we recap where our `number` action is located in the grammar descripti
 Here is the complete content of this grammar description:
 
 ```ebnf
+
 (* A simple comma separated list *)
+%grammar
 start               = (* epsilon *)
                     | number { "," number }
 ;

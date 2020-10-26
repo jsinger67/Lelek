@@ -59,7 +59,7 @@ module LlkParser =
                                 Transitions = [|
                                     Tr(Tok = 2, Next = 1)
                                     Tr(Tok = 3, Next = 1)
-                                    Tr(Tok = 14, Next = 1)
+                                    Tr(Tok = 15, Next = 1)
                                 |]
                                 Accepted = true
                                 Prediction = 0
@@ -88,7 +88,7 @@ module LlkParser =
                                 Transitions = [|
                                     Tr(Tok = 2, Next = 1)
                                     Tr(Tok = 3, Next = 1)
-                                    Tr(Tok = 14, Next = 1)
+                                    Tr(Tok = 15, Next = 1)
                                 |]
                                 Accepted = true
                                 Prediction = 0
@@ -107,7 +107,7 @@ module LlkParser =
                 // -----------------------------------------------------------------------------
                 ParserRule(
                     Name = "rules",
-                    Production = [|-3; -21; -3; -22|],
+                    Production = [|4; -3; -21; -3; -22|],
                     PTOp = (fun args -> ParseTree.clipPT "rules" args),
                     Action = (fun _ state _ -> state),
                     LookaheadDFA = 
@@ -115,9 +115,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 2, Next = 1)
-                                    Tr(Tok = 3, Next = 1)
-                                    Tr(Tok = 15, Next = 1)
+                                    Tr(Tok = 4, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -146,8 +144,8 @@ module LlkParser =
                                 Transitions = [|
                                     Tr(Tok = 2, Next = 1)
                                     Tr(Tok = 3, Next = 1)
-                                    Tr(Tok = 14, Next = 1)
                                     Tr(Tok = 15, Next = 1)
+                                    Tr(Tok = 16, Next = 1)
                                 |]
                                 Accepted = true
                                 Prediction = 0
@@ -176,8 +174,8 @@ module LlkParser =
                                 Transitions = [|
                                     Tr(Tok = 2, Next = 1)
                                     Tr(Tok = 3, Next = 1)
-                                    Tr(Tok = 14, Next = 3)
                                     Tr(Tok = 15, Next = 3)
+                                    Tr(Tok = 16, Next = 3)
                                 |]
                                 Accepted = true
                                 Prediction = 1
@@ -288,11 +286,11 @@ module LlkParser =
                                 Transitions = [|
                                     Tr(Tok = 2, Next = 1)
                                     Tr(Tok = 3, Next = 1)
-                                    Tr(Tok = 8, Next = 1)
-                                    Tr(Tok = 10, Next = 1)
-                                    Tr(Tok = 12, Next = 1)
-                                    Tr(Tok = 15, Next = 1)
+                                    Tr(Tok = 9, Next = 1)
+                                    Tr(Tok = 11, Next = 1)
+                                    Tr(Tok = 13, Next = 1)
                                     Tr(Tok = 16, Next = 1)
+                                    Tr(Tok = 17, Next = 1)
                                 |]
                                 Accepted = true
                                 Prediction = 0
@@ -321,12 +319,12 @@ module LlkParser =
                                 Transitions = [|
                                     Tr(Tok = 2, Next = 1)
                                     Tr(Tok = 3, Next = 1)
-                                    Tr(Tok = 7, Next = 3)
                                     Tr(Tok = 8, Next = 3)
-                                    Tr(Tok = 10, Next = 3)
-                                    Tr(Tok = 12, Next = 3)
-                                    Tr(Tok = 15, Next = 3)
+                                    Tr(Tok = 9, Next = 3)
+                                    Tr(Tok = 11, Next = 3)
+                                    Tr(Tok = 13, Next = 3)
                                     Tr(Tok = 16, Next = 3)
+                                    Tr(Tok = 17, Next = 3)
                                 |]
                                 Accepted = true
                                 Prediction = 1
@@ -448,7 +446,7 @@ module LlkParser =
                             {
                                 Id = 1
                                 Transitions = [|
-                                    Tr(Tok = 16, Next = 2)
+                                    Tr(Tok = 17, Next = 2)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -456,7 +454,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 14, Next = 1)
+                                    Tr(Tok = 15, Next = 1)
                                 |]
                                 Accepted = true
                                 Prediction = 1
@@ -464,8 +462,8 @@ module LlkParser =
                             {
                                 Id = 2
                                 Transitions = [|
-                                    Tr(Tok = 14, Next = 3)
-                                    Tr(Tok = 16, Next = 4)
+                                    Tr(Tok = 15, Next = 3)
+                                    Tr(Tok = 17, Next = 4)
                                 |]
                                 Accepted = true
                                 Prediction = 0
@@ -505,10 +503,8 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 2, Next = 2)
-                                    Tr(Tok = 3, Next = 2)
-                                    Tr(Tok = 14, Next = 1)
-                                    Tr(Tok = 15, Next = 2)
+                                    Tr(Tok = 4, Next = 2)
+                                    Tr(Tok = 15, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -540,7 +536,7 @@ module LlkParser =
                 // -----------------------------------------------------------------------------
                 ParserRule(
                     Name = "block_comment_decl",
-                    Production = [|14; -49; -49|],
+                    Production = [|15; -49; -49|],
                     PTOp = (fun args -> ParseTree.makePT "block_comment_decl" args),
                     Action = (fun _ state _ -> state),
                     LookaheadDFA = 
@@ -548,7 +544,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 14, Next = 1)
+                                    Tr(Tok = 15, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -567,7 +563,7 @@ module LlkParser =
                 // -----------------------------------------------------------------------------
                 ParserRule(
                     Name = "line_comment_decl",
-                    Production = [|14; -49|],
+                    Production = [|15; -49|],
                     PTOp = (fun args -> ParseTree.makePT "line_comment_decl" args),
                     Action = (fun _ state _ -> state),
                     LookaheadDFA = 
@@ -575,7 +571,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 14, Next = 1)
+                                    Tr(Tok = 15, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -594,7 +590,7 @@ module LlkParser =
                 // -----------------------------------------------------------------------------
                 ParserRule(
                     Name = "rule",
-                    Production = [|-25; 4; -9; -26; -9; 5|],
+                    Production = [|-25; 5; -9; -26; -9; 6|],
                     PTOp = (fun args -> ParseTree.makePT "rule" args),
                     Action = AST.rule,
                     LookaheadDFA = 
@@ -602,7 +598,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 15, Next = 1)
+                                    Tr(Tok = 16, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -629,7 +625,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 15, Next = 1)
+                                    Tr(Tok = 16, Next = 1)
                                     Tr(Tok = 2147483647, Next = 2)
                                 |]
                                 Accepted = false
@@ -670,7 +666,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 15, Next = 1)
+                                    Tr(Tok = 16, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -697,7 +693,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 15, Next = 1)
+                                    Tr(Tok = 16, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -724,12 +720,12 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 7, Next = 1)
                                     Tr(Tok = 8, Next = 1)
-                                    Tr(Tok = 10, Next = 1)
-                                    Tr(Tok = 12, Next = 1)
-                                    Tr(Tok = 15, Next = 1)
+                                    Tr(Tok = 9, Next = 1)
+                                    Tr(Tok = 11, Next = 1)
+                                    Tr(Tok = 13, Next = 1)
                                     Tr(Tok = 16, Next = 1)
+                                    Tr(Tok = 17, Next = 1)
                                 |]
                                 Accepted = true
                                 Prediction = 0
@@ -748,7 +744,7 @@ module LlkParser =
                 // -----------------------------------------------------------------------------
                 ParserRule(
                     Name = "identifier",
-                    Production = [|15|],
+                    Production = [|16|],
                     PTOp = (fun args -> ParseTree.makePT "identifier" args),
                     Action = (fun _ state _ -> state),
                     LookaheadDFA = 
@@ -756,7 +752,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 15, Next = 1)
+                                    Tr(Tok = 16, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -783,12 +779,12 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 7, Next = 1)
                                     Tr(Tok = 8, Next = 1)
-                                    Tr(Tok = 10, Next = 1)
-                                    Tr(Tok = 12, Next = 1)
-                                    Tr(Tok = 15, Next = 1)
+                                    Tr(Tok = 9, Next = 1)
+                                    Tr(Tok = 11, Next = 1)
+                                    Tr(Tok = 13, Next = 1)
                                     Tr(Tok = 16, Next = 1)
+                                    Tr(Tok = 17, Next = 1)
                                 |]
                                 Accepted = true
                                 Prediction = 0
@@ -815,12 +811,12 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 7, Next = 1)
                                     Tr(Tok = 8, Next = 1)
-                                    Tr(Tok = 10, Next = 1)
-                                    Tr(Tok = 12, Next = 1)
-                                    Tr(Tok = 15, Next = 1)
+                                    Tr(Tok = 9, Next = 1)
+                                    Tr(Tok = 11, Next = 1)
+                                    Tr(Tok = 13, Next = 1)
                                     Tr(Tok = 16, Next = 1)
+                                    Tr(Tok = 17, Next = 1)
                                 |]
                                 Accepted = true
                                 Prediction = 0
@@ -849,11 +845,11 @@ module LlkParser =
                                 Transitions = [|
                                     Tr(Tok = 2, Next = 2)
                                     Tr(Tok = 3, Next = 2)
-                                    Tr(Tok = 5, Next = 2)
-                                    Tr(Tok = 6, Next = 1)
-                                    Tr(Tok = 9, Next = 2)
-                                    Tr(Tok = 11, Next = 2)
-                                    Tr(Tok = 13, Next = 2)
+                                    Tr(Tok = 6, Next = 2)
+                                    Tr(Tok = 7, Next = 1)
+                                    Tr(Tok = 10, Next = 2)
+                                    Tr(Tok = 12, Next = 2)
+                                    Tr(Tok = 14, Next = 2)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -885,7 +881,7 @@ module LlkParser =
                 // -----------------------------------------------------------------------------
                 ParserRule(
                     Name = "alternations_lst1_itm1",
-                    Production = [|6; -29|],
+                    Production = [|7; -29|],
                     PTOp = (fun args -> ParseTree.makePT "alternations_lst1_itm1" args),
                     Action = (fun _ state _ -> state),
                     LookaheadDFA = 
@@ -893,7 +889,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 6, Next = 1)
+                                    Tr(Tok = 7, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -920,12 +916,12 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 7, Next = 6)
-                                    Tr(Tok = 8, Next = 1)
-                                    Tr(Tok = 10, Next = 1)
-                                    Tr(Tok = 12, Next = 1)
-                                    Tr(Tok = 15, Next = 1)
+                                    Tr(Tok = 8, Next = 6)
+                                    Tr(Tok = 9, Next = 1)
+                                    Tr(Tok = 11, Next = 1)
+                                    Tr(Tok = 13, Next = 1)
                                     Tr(Tok = 16, Next = 1)
+                                    Tr(Tok = 17, Next = 1)
                                 |]
                                 Accepted = true
                                 Prediction = 1
@@ -965,8 +961,8 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 6, Next = 2)
-                                    Tr(Tok = 7, Next = 1)
+                                    Tr(Tok = 7, Next = 2)
+                                    Tr(Tok = 8, Next = 1)
                                 |]
                                 Accepted = true
                                 Prediction = 1
@@ -998,7 +994,7 @@ module LlkParser =
                 // -----------------------------------------------------------------------------
                 ParserRule(
                     Name = "action",
-                    Production = [|7; -48|],
+                    Production = [|8; -48|],
                     PTOp = (fun args -> ParseTree.makePT "action" args),
                     Action = AST.userAction,
                     LookaheadDFA = 
@@ -1006,7 +1002,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 7, Next = 1)
+                                    Tr(Tok = 8, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -1033,11 +1029,11 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 8, Next = 1)
-                                    Tr(Tok = 10, Next = 1)
-                                    Tr(Tok = 12, Next = 1)
-                                    Tr(Tok = 15, Next = 1)
+                                    Tr(Tok = 9, Next = 1)
+                                    Tr(Tok = 11, Next = 1)
+                                    Tr(Tok = 13, Next = 1)
                                     Tr(Tok = 16, Next = 1)
+                                    Tr(Tok = 17, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -1064,11 +1060,11 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 8, Next = 1)
-                                    Tr(Tok = 10, Next = 2)
-                                    Tr(Tok = 12, Next = 3)
-                                    Tr(Tok = 15, Next = 4)
-                                    Tr(Tok = 16, Next = 5)
+                                    Tr(Tok = 9, Next = 1)
+                                    Tr(Tok = 11, Next = 2)
+                                    Tr(Tok = 13, Next = 3)
+                                    Tr(Tok = 16, Next = 4)
+                                    Tr(Tok = 17, Next = 5)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -1139,7 +1135,7 @@ module LlkParser =
                 // -----------------------------------------------------------------------------
                 ParserRule(
                     Name = "group",
-                    Production = [|8; -26; 9|],
+                    Production = [|9; -26; 10|],
                     PTOp = (fun args -> ParseTree.makePT "group" args),
                     Action = AST.group,
                     LookaheadDFA = 
@@ -1147,7 +1143,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 8, Next = 1)
+                                    Tr(Tok = 9, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -1166,7 +1162,7 @@ module LlkParser =
                 // -----------------------------------------------------------------------------
                 ParserRule(
                     Name = "repeat",
-                    Production = [|10; -26; 11|],
+                    Production = [|11; -26; 12|],
                     PTOp = (fun args -> ParseTree.makePT "repeat" args),
                     Action = AST.repeat,
                     LookaheadDFA = 
@@ -1174,7 +1170,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 10, Next = 1)
+                                    Tr(Tok = 11, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -1193,7 +1189,7 @@ module LlkParser =
                 // -----------------------------------------------------------------------------
                 ParserRule(
                     Name = "optional",
-                    Production = [|12; -26; 13|],
+                    Production = [|13; -26; 14|],
                     PTOp = (fun args -> ParseTree.makePT "optional" args),
                     Action = AST.optional,
                     LookaheadDFA = 
@@ -1201,7 +1197,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 12, Next = 1)
+                                    Tr(Tok = 13, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -1228,7 +1224,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 16, Next = 1)
+                                    Tr(Tok = 17, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -1255,7 +1251,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 15, Next = 1)
+                                    Tr(Tok = 16, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -1274,7 +1270,7 @@ module LlkParser =
                 // -----------------------------------------------------------------------------
                 ParserRule(
                     Name = "string",
-                    Production = [|16|],
+                    Production = [|17|],
                     PTOp = (fun args -> ParseTree.makePT "string" args),
                     Action = (fun _ state _ -> state),
                     LookaheadDFA = 
@@ -1282,7 +1278,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 16, Next = 1)
+                                    Tr(Tok = 17, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -1309,8 +1305,8 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 6, Next = 2)
-                                    Tr(Tok = 17, Next = 1)
+                                    Tr(Tok = 7, Next = 2)
+                                    Tr(Tok = 18, Next = 1)
                                 |]
                                 Accepted = true
                                 Prediction = 1
@@ -1342,7 +1338,7 @@ module LlkParser =
                 // -----------------------------------------------------------------------------
                 ParserRule(
                     Name = "user_action_lst1_itm1",
-                    Production = [|17; -27|],
+                    Production = [|18; -27|],
                     PTOp = (fun args -> ParseTree.makePT "user_action_lst1_itm1" args),
                     Action = (fun _ state _ -> state),
                     LookaheadDFA = 
@@ -1350,7 +1346,7 @@ module LlkParser =
                             {
                                 Id = 0
                                 Transitions = [|
-                                    Tr(Tok = 17, Next = 1)
+                                    Tr(Tok = 18, Next = 1)
                                 |]
                                 Accepted = false
                                 Prediction = -1

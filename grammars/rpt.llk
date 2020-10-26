@@ -1,2 +1,4 @@
+%grammar
+
 start                = { "a" }
 ;

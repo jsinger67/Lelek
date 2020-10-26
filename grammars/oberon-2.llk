@@ -1,5 +1,7 @@
 %comment "\(\*" "\*\)"
 
+%grammar
+
 Module = "MODULE" ident ";" [ImportList] DeclSeq ["BEGIN" StatementSeq] "END" ident "\."
 ;
 

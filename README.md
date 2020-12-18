@@ -1,5 +1,5 @@
 <!-- markdownlint-disable first-line-h1 -->
-![.NET Core](https://github.com/jsinger67/Lelek/workflows/.NET%20Core/badge.svg)
+![.NET Core](https://github.com/jsinger67/Lelek/workflows/.NET/badge.svg)
 <!-- markdownlint-enable first-line-h1 -->
 # About Lelek - v0.2.0
 

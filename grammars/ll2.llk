@@ -1,0 +1,5 @@
+(* LL(2) example *)
+%grammar
+A = B | C;
+B = ("a" | "b") "d";
+C = ("a" | "c") "e";

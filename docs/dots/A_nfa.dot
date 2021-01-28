@@ -1,0 +1,39 @@
+digraph G {
+    rankdir=LR;
+    label="A_nfa";
+
+    "0" [shape=circle, color=green];
+    "10000" [shape=circle, color=blue];
+    "10001" [shape=circle, color=blue];
+    "10002" [shape=circle, color=blue];
+    "10003" [shape=circle, color=blue];
+    "10004" [shape=circle, color=blue];
+    "10005" [shape=circle, color=blue];
+    "10006" [shape=doublecircle, color=red];
+    "20000" [shape=circle, color=blue];
+    "20001" [shape=circle, color=blue];
+    "20002" [shape=circle, color=blue];
+    "20003" [shape=circle, color=blue];
+    "20004" [shape=circle, color=blue];
+    "20005" [shape=circle, color=blue];
+    "20006" [shape=doublecircle, color=red];
+
+
+    "0" -> "10000" [label="ε"];
+    "0" -> "20000" [label="ε"];
+    "10000" -> "10002" [label="ε"];
+    "10000" -> "10004" [label="ε"];
+    "10001" -> "10006" [label=" d "];
+    "10002" -> "10003" [label=" a "];
+    "10003" -> "10001" [label="ε"];
+    "10004" -> "10005" [label=" b "];
+    "10005" -> "10001" [label="ε"];
+    "20000" -> "20002" [label="ε"];
+    "20000" -> "20004" [label="ε"];
+    "20001" -> "20006" [label=" e "];
+    "20002" -> "20003" [label=" a "];
+    "20003" -> "20001" [label="ε"];
+    "20004" -> "20005" [label=" c "];
+    "20005" -> "20001" [label="ε"];
+
+}

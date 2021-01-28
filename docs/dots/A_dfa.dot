@@ -1,0 +1,21 @@
+digraph G {
+    rankdir=LR;
+    label="A_dfa";
+
+    "0" [shape=ellipse, color=green];
+    "10003|20003" [shape=ellipse, color=blue];
+    "10005" [shape=ellipse, color=blue];
+    "10006" [shape=doublecircle, color=red];
+    "20005" [shape=ellipse, color=blue];
+    "20006" [shape=doublecircle, color=red];
+
+
+    "0" -> "10003|20003" [label=" a "];
+    "0" -> "10005" [label=" b "];
+    "0" -> "20005" [label=" c "];
+    "10003|20003" -> "10006" [label=" d "];
+    "10003|20003" -> "20006" [label=" e "];
+    "10005" -> "10006" [label=" d "];
+    "20005" -> "20006" [label=" e "];
+
+}

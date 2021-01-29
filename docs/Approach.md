@@ -1,10 +1,10 @@
-# Approach
+# Solving the _Rule Decision Problem_
 
 ## Preconditions
 
-For a `well-formed` Context Free Grammar a parsing algorithm has to provide a strategy to decide which actual production should be applied when facing a certain sequence of input tokens. Lets call this the _Rule Decision Problem_.
+A parsing algorithm has to provide a strategy to decide which actual production should be applied when facing a certain sequence of input tokens. Let's call this the _Rule Decision Problem_.
 
-My approach defines the following criteria for `well formedness`.
+The chosen approach defines the following `criteria` for a Context Free Grammar to be applicable.
 
 * The grammar should not contain unreachable or unproductive non-terminals
 * The grammar must not contain any left recursion
@@ -12,7 +12,7 @@ My approach defines the following criteria for `well formedness`.
 
 ## Interpretation of data
 
-Under the former mentioned preconditions you can interpret the first $k$ terminals that each production can possibly produce as a regular language and thus enabling you to use the means of regular expressions to handle these data. To collect the aforementioned structure of produced terminals we can - figuratively spoken - unroll the non-terminals recursively, thereby producing a sort of circle free token-graph structure, until we have collected $k$ tokens in each path of the graph. Our postulated `well formedness` of the grammar is especially required to make this process terminating.
+Under the former mentioned preconditions you can interpret the first $k$ terminals that each production can produce as a regular language and thus enabling you to use the means of regular expressions to handle these data. To collect the aforementioned structure of produced terminals we can - figuratively spoken - unroll the non-terminals recursively, thereby producing a sort of circle free directed token-graph structure, until we have collected $k$ tokens in each path of the graph. Our postulated `criteria` of the grammar are especially required to make this process terminating.
 
 You can find the regex-like data structure in the module LAAutomation.
 
@@ -35,9 +35,9 @@ $$
 nfa_{combined}=\bigcup_{i=0}^{n-1} nfa_{i}^{N}
 $$
 
-The union operation I apply here performs two steps. It creates a new start state and adds an epsilon transition from this start state to each start state of $r_{i}$. Also it keeps track for each state in the combined NFA of its original production number.
+The union operation I apply here performs two steps. It creates a new start state and adds an epsilon transition from this start state to each start state of $nfa_{i}$. Also it keeps track for each state in the combined NFA of its original production number.
 
-*Note* that this union does *not* insert a new end state - making it different from the classical union operations performed on regex's.
+*Note* that this union operation does *not* insert a new end state - making it different from the classical union operations performed on regex's.
 
 The result is a NFA with states that hold besides their state number $s$ additionally the number of the production $i$ where it stems from.
 
@@ -58,13 +58,11 @@ If the DFA is not able to decide the _Rule Decision Problem_ the number of looka
 If the maximum number of lookahead tokens is reached the production to choose can't be predicted (with the given lookahead depth). This is usually a problem of the grammar formulation.
 ___
 
-I won't give an exact prove for this here.
-
-Instead I will give an example.
+I won't give an exact prove for this here. Instead I will give an example.
 
 ## Example
 
-Lets take a simple LL(2) grammar.
+Let's take a simple LL(2) grammar.
 
 ```ebnf
 A = B | C;
@@ -75,7 +73,7 @@ C = ("a" | "c") "e";
 It is LL(2) because both non-terminals $B$ and $C$ can start with a terminal "a".
 So a _Rule Decision Problem_ exists for the non-terminal $A$.
 
-Further let us assume that we can 'unroll' the productions $p_{i}^{A}|i=0..1$ , which is trivial in my example:
+Further let's assume that we can 'unroll' the productions $p_{i}^{A}|i=0..1$ , which is trivially possible in the given example:
 
 $p_{0}^{A} = B$
 
@@ -90,30 +88,30 @@ C = ("a" | "c") "e";
 
 $r_{1}^{A} = C = "(a|c)e" | \{a,c,e\}  \in T$
 
-Lets see the NFAs for each regular expression $r_{i}$.
+___
+Now we can transform the regular expression $r_{i}$ to NFAs $nfa_{i}$. Lets have a look at these NFAs.
 
 ![nfa0](./images/A_contr0_nfa.svg)
 
 ![nfa1](./images/A_contr1_nfa.svg)
 
 ___
-And here the combined NFA:
+And here is the combined NFA after applying the described union operation:
 
 ![nfa_combined](./images/A_nfa.svg)
 
 The state numbers are hexadecimal displayed and contain in the higher word the production number + 1. Please note that the production number is always relative within the productions of the non-terminal here.
 ___
-Now lets have a look at the generated DFA:
+Now let's have a look at the DFA generated from the combined NFA:
 
 ![dfa](./images/A_dfa.svg)
 
-Here you can see that only intermediate states of the DFA contain contributing NFA states with differing production number, i.e. it is exactly one state in the middle of the picture.
+Here you can see that only intermediate states of the DFA contain contributing NFA states with differing production number. Actually there is exactly one 'ambiguous' state in the middle of the graph.
 
-And additionally you can see that the accepting states contain only one contributing production number. Thus this Automaton can unambiguously decide the _Rule Decision Problem_.
+And additionally you can see that the accepting states contain only one contributing production number. Thus this Automaton can unambiguously decide the _Rule Decision Problem_. And for each production number there exists at least one accepting DFA state. In our example the state 10006 predicts production 0 and state 20006 predicts production 1.
 
-Note that the DFA needs two lookahead terminals to reach a accepting state. This defines the lookahead of 2 tokens - the 2 in LL(2).
+Note that the DFA needs two lookahead terminals to reach an accepting state. This defines the lookahead of 2 tokens - the number 2 in LL(2).
 
-If we would have taken only a lookahead of one the accepting states were those in the middle column in the picture above. And since we have an ambiguous state here in the center (10003|20003) this version would not satisfy rule #1.
-
+If we would have taken only a lookahead of one the accepting states were those in the middle column in the DFA graph. And since we have an ambiguous state here in the center (10003|20003) this variant of the DFA would not satisfy rule #1.
 
 This is the core algorithm of Lelek.

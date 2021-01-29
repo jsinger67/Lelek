@@ -88,7 +88,7 @@ $p_{1}^{A} = C$
 
 C = ("a" | "c") "e";
 
-$r_{1}^{A} = C = "(a|c)d" | \{a,b,d\}  \in T$
+$r_{1}^{A} = C = "(a|c)e" | \{a,c,e\}  \in T$
 
 Lets see the NFAs for each regular expression $r_{i}$.
 

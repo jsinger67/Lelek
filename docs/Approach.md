@@ -1,5 +1,7 @@
 # Solving the _Rule Decision Problem_
 
+Note: To see the mathematical formulae correctly you can use the Chrome extension [Github with MathJax](https://chrome.google.com/webstore/detail/github-with-mathjax/ioemnmodlmafdkllaclgeombjnmnbima).
+
 ## Preconditions
 
 A parsing algorithm has to provide a strategy to decide which actual production should be applied when facing a certain sequence of input tokens. Let's call this the _Rule Decision Problem_.

@@ -1,0 +1,11 @@
+(* Grammar 5 *)
+
+%grammar
+
+S = T ":" X;
+T = F ";";
+T = ;
+F = I;
+F = X;
+I = "id";
+X = "\(" T "\)";

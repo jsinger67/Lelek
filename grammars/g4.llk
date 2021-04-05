@@ -1,0 +1,8 @@
+(* Grammar 4 *)
+
+%grammar
+
+S = T;
+T = F ";";
+F = "<" T ">";
+F = "id";

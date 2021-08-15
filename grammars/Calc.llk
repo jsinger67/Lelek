@@ -145,7 +145,7 @@ negate              = minus
 factor              = number
                     | idref
                     | negate factor                                 @AST.negate
-                    | "\(" summ "\)"
+                    | "\(" logical_or "\)"
 ;
 number              = "\d+"                                         @AST.number
 ;

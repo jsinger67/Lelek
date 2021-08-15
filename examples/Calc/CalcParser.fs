@@ -554,6 +554,7 @@ module ParserModule =
                                 Transitions = [|
                                     Tr(Tok = 4, Next = 2)
                                     Tr(Tok = 7, Next = 1)
+                                    Tr(Tok = 18, Next = 2)
                                 |]
                                 Accepted = false
                                 Prediction = -1
@@ -1592,7 +1593,6 @@ module ParserModule =
                                     Tr(Tok = 11, Next = 3)
                                     Tr(Tok = 13, Next = 1)
                                     Tr(Tok = 14, Next = 1)
-                                    Tr(Tok = 18, Next = 3)
                                 |]
                                 Accepted = true
                                 Prediction = 1
@@ -2013,7 +2013,7 @@ module ParserModule =
                 )
                 ParserRule(
                     Name = "factor",
-                    Production = [|17; -51; 18|],
+                    Production = [|17; -7; 18|],
                     PTOp = (fun args -> ParseTree.makePT "factor" args),
                     Action = (fun _ state _ -> state),
                     LookaheadDFA = [||]

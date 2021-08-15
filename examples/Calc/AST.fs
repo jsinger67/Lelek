@@ -227,8 +227,8 @@ module AST =
         match stack with
         | Res(Num(_) as a) :: (Res(Num(_) as b) :: t) ->
             match enum ttOp, txOp with
-            | TokenType.TkBitwiseShiftOp, "<<" -> Res(Num.op_LeftShift(a, b)) :: t
-            | TokenType.TkBitwiseShiftOp, ">>" -> Res(Num.op_RightShift (a, b)) :: t
+            | TokenType.TkBitwiseShiftOp, "<<" -> Res(Num.op_LeftShift(b, a)) :: t
+            | TokenType.TkBitwiseShiftOp, ">>" -> Res(Num.op_RightShift (b, a)) :: t
             | _ ->
                 printError feedback "bitwiseShiftItem: unexpected operator" args.[0]
                 failwith "bitwiseShiftItem: unexpected operator"

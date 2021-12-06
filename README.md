@@ -26,7 +26,12 @@ There are also examples that describe the principles of language processing poss
 But of course there exists another opportunity to process the parse result.
 The concrete syntax tree the parser spits out can be processed by user created tools too. So no one is tied to Lelek's approach to Semantic Actions.
 
-Lelek is a proof of concept.
+## Current state of the project
+
+Lelek isn't actively developed anymore. All work is now dedicated to the new [`parol`](https://github.com/jsinger67/parol) parser generator written in Rust.
+Lelek was a proof of concept and I learnt a lot while working on it. Some concepts have been taken over to `parol` and some not.
+
+The concept of using regular expression to generate scanners is closely kept. On the other hand the way of calculating the lookahead was completely reworked.
 
 ## Changes in V0.2.1
 

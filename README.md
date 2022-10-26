@@ -29,9 +29,9 @@ The concrete syntax tree the parser spits out can be processed by user created t
 ## Current state of the project
 
 Lelek isn't actively developed anymore. All work is now dedicated to the new [`parol`](https://github.com/jsinger67/parol) parser generator written in Rust.
-Lelek was a proof of concept and I learnt a lot while working on it. Some concepts have been taken over to `parol` and some not.
+Lelek was a proof of concept and I learnt a lot while working on it. Many concepts have been taken over to `parol` and some have been abandoned.
 
-The concept of using regular expressions to generate scanners is closely kept. On the other hand the way of calculating the lookahead was completely reworked in `parol`.
+For instance, the concept of using regular expressions to describe scanners is closely kept. On the other hand the way of calculating the lookahead was completely reworked in `parol`. Also the detection of left-recursions was changed.
 
 ## Changes in V0.2.1
 

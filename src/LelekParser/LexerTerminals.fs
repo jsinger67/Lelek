@@ -24,7 +24,6 @@ module LexerTerminals =
             | '/' -> "Slash"
             | '=' -> "Equ"
             | '!' -> "Bang"
-            | '-' -> "Dash"
             | '.' -> "Dot"
             | '~' -> "Tilde"
             | '$' -> "Dollar"
